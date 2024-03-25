@@ -1,0 +1,26 @@
+<Project Sdk="Microsoft.NET.Sdk.Web">
+
+    <PropertyGroup>
+        <TargetFramework>net8.0</TargetFramework>
+        <Nullable>enable</Nullable>
+        <ImplicitUsings>enable</ImplicitUsings>
+        <InvariantGlobalization>true</InvariantGlobalization>
+        <UserSecretsId>9dc5329c-c0b6-4f90-8232-610672133681</UserSecretsId>
+    </PropertyGroup>
+
+    <ItemGroup>    
+        <PackageReference Include="Azure.Extensions.AspNetCore.Configuration.Secrets" Version="1.3.0"/>
+        <PackageReference Include="AspNetCore.HealthChecks.NpgSql" Version="8.0.0"/>
+        <PackageReference Include="Microsoft.AspNetCore.OpenApi" Version="8.0.1"/>
+        <PackageReference Include="Microsoft.Identity.Web" Version="2.16.1"/>
+        <PackageReference Include="Microsoft.Identity.Web.GraphServiceClient" Version="2.16.1"/>
+        <PackageReference Include="OpenTelemetry.Instrumentation.AspNetCore" Version="1.7.0"/>
+        <PackageReference Include="OpenTelemetry.Instrumentation.Http" Version="1.7.0"/>
+        <PackageReference Include="Swashbuckle.AspNetCore" Version="6.4.0"/>
+    </ItemGroup>
+
+    <ItemGroup>
+        <ProjectReference Include="..\Heimdall.Midgard.Valkyrie.Infrastructure\Heimdall.Midgard.Valkyrie.Infrastructure.csproj"/>
+    </ItemGroup>
+
+</Project>

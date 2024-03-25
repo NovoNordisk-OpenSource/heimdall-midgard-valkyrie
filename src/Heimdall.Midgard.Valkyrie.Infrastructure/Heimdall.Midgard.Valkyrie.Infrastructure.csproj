@@ -1,0 +1,32 @@
+﻿<Project Sdk="Microsoft.NET.Sdk">
+
+    <PropertyGroup>
+        <TargetFramework>net8.0</TargetFramework>
+        <ImplicitUsings>enable</ImplicitUsings>
+        <Nullable>enable</Nullable>
+    </PropertyGroup>
+
+    <ItemGroup>
+        <PackageReference Include="BeHeroes.CodeOps.Infrastructure.EntityFramework" Version="1.0.0"/>
+        <PackageReference Include="BeHeroes.CodeOps.Infrastructure.Kafka" Version="1.0.0"/>
+        <PackageReference Include="Confluent.Kafka" Version="2.3.0"/>
+        <PackageReference Include="Microsoft.EntityFrameworkCore.Design" Version="8.0.1">
+            <PrivateAssets>all</PrivateAssets>
+            <IncludeAssets>runtime; build; native; contentfiles; analyzers; buildtransitive</IncludeAssets>
+        </PackageReference>
+        <PackageReference Include="Microsoft.Extensions.Diagnostics.HealthChecks.EntityFrameworkCore" Version="8.0.1"/>        
+        <PackageReference Include="Microsoft.Identity.Web.TokenAcquisition" Version="2.16.1"/>
+        <PackageReference Include="Npgsql.EntityFrameworkCore.PostgreSQL" Version="8.0.0"/>
+        <PackageReference Include="OpenTelemetry.Exporter.Console" Version="1.7.0"/>
+        <PackageReference Include="OpenTelemetry.Exporter.OpenTelemetryProtocol" Version="1.7.0"/>
+        <PackageReference Include="OpenTelemetry.Extensions.Hosting" Version="1.7.0"/>
+    </ItemGroup>
+
+    <ItemGroup>
+        <ProjectReference Include="..\Heimdall.Midgard.Valkyrie.Application\Heimdall.Midgard.Valkyrie.Application.csproj"/>
+    </ItemGroup>
+
+    <ItemGroup>
+        <Folder Include="Data\Migrations\"/>
+    </ItemGroup>
+</Project>

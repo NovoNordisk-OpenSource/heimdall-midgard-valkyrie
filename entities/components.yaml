@@ -1,0 +1,115 @@
+apiVersion: backstage.io/v1alpha1
+kind: Component
+metadata:
+  name: heimdall-midgard-valkyrie-domain
+  title: Valkyrie domain
+  description: This is a domain layer for our Valkyrie microservice
+  tags:
+    - heimdall
+    - midgard
+    - valkyrie
+    - dotnet
+    - domain
+    - microservice
+  annotations:
+    backstage.io/techdocs-entity: location:default/heimdall-midgard-valkyrie
+spec:
+  type: library
+  lifecycle: production
+  owner: platform-engineering
+  system: heimdall-midgard-valkyrie
+---
+apiVersion: backstage.io/v1alpha1
+kind: Component
+metadata:
+  name: heimdall-midgard-valkyrie-application
+  title: Valkyrie application
+  description: This is a application layer for our Valkyrie microservice
+  tags:
+    - heimdall
+    - midgard
+    - valkyrie
+    - dotnet
+    - application
+    - microservice
+  annotations:
+    backstage.io/techdocs-entity: location:default/heimdall-midgard-valkyrie
+spec:
+  type: library
+  lifecycle: production
+  owner: platform-engineering
+  system: heimdall-midgard-valkyrie
+  dependsOn:
+    - component:heimdall-midgard-valkyrie-domain
+---
+apiVersion: backstage.io/v1alpha1
+kind: Component
+metadata:
+  name: heimdall-midgard-valkyrie-infrastructure
+  title: Valkyrie infrastructure
+  description: This is a infrastructure layer for our Valkyrie microservice
+  tags:
+    - heimdall
+    - midgard
+    - valkyrie
+    - dotnet
+    - infrastructure
+    - microservice
+  annotations:
+    backstage.io/techdocs-entity: location:default/heimdall-midgard-valkyrie
+spec:
+  type: library
+  lifecycle: production
+  owner: platform-engineering
+  system: heimdall-midgard-valkyrie
+  dependsOn:
+    - component:heimdall-midgard-valkyrie-application
+---
+apiVersion: backstage.io/v1alpha1
+kind: Component
+metadata:
+  name: heimdall-midgard-valkyrie-host-api
+  title: Valkyrie REST api
+  description: This is the host process for our Valkyries REST api
+  tags:
+    - heimdall
+    - midgard
+    - valkyrie
+    - dotnet
+    - api
+    - microservice
+  annotations:
+    backstage.io/techdocs-entity: location:default/heimdall-midgard-valkyrie
+spec:
+  type: service
+  lifecycle: production
+  owner: platform-engineering
+  system: heimdall-midgard-valkyrie
+  dependsOn:
+    - component:heimdall-midgard-valkyrie-infrastructure
+  providesApis:
+    - heimdall-midgard-valkyrie-host-api
+---
+apiVersion: backstage.io/v1alpha1
+kind: Component
+metadata:
+  name: heimdall-midgard-valkyrie-host-worker
+  title: Valkyrie worker
+  description: This is a worker process for our Valkyrie microservice
+  tags:
+    - heimdall
+    - midgard
+    - valkyrie
+    - dotnet
+    - background-service
+    - worker
+    - microservice
+  annotations:
+    backstage.io/techdocs-entity: location:default/heimdall-midgard-valkyrie
+spec:
+  type: service
+  lifecycle: production
+  owner: platform-engineering
+  system: heimdall-midgard-valkyrie
+  dependsOn:
+    - component:heimdall-midgard-valkyrie-infrastructure

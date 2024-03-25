@@ -1,0 +1,17 @@
+apiVersion: backstage.io/v1alpha1
+kind: System
+metadata:
+  name: heimdall-midgard-valkyrie
+  title: Heimdall Midgard Valkyrie
+  description: This is a system description for the Heimdall Midgard Valkyrie microservice.
+  tags:
+    - heimdall
+    - midgard
+    - valkyrie
+    - dotnet
+    - microservice
+  annotations:
+    backstage.io/techdocs-entity: location:default/heimdall-midgard-valkyrie
+spec:
+  domain: heimdall-midgard
+  owner: platform-engineering

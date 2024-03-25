@@ -1,0 +1,24 @@
+apiVersion: backstage.io/v1alpha1
+kind: Location
+metadata:
+  name: heimdall-midgard-valkyrie
+  title: Midgard Valkyrie .NET microservice
+  description: |
+    This is a location for all entities related to the Midgard Valkyrie .NET microservice
+  tags:
+    - heimdall
+    - midgard
+    - valkyrie
+    - dotnet
+    - microservice
+    - onion-architecture
+  annotations:
+    backstage.io/techdocs-ref: dir:.
+spec:
+  targets:
+    - ./entities/apis.yaml 
+    - ./entities/components.yaml 
+    - ./entities/domains.yaml 
+    - ./entities/groups.yaml 
+    - ./entities/systems.yaml 
+    - ./entities/users.yaml 

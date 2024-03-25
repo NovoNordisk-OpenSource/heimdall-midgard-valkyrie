@@ -1,0 +1,44 @@
+apiVersion: backstage.io/v1alpha1
+kind: API
+metadata:
+  name: heimdall-midgard-valkyrie-host-api
+  title: Valkyrie api host
+  description: Retrievs API data for consumer
+  tags:
+    - midgard
+    - valkyrie
+    - dotnet
+    - rest
+    - aspnetcore
+    - openapi
+    - microservice
+  annotations:
+    backstage.io/techdocs-entity: location:default/heimdall-template-dotnet-microservice
+spec:
+  type: openapi
+  lifecycle: production
+  owner: platform-engineering
+  system: heimdall-midgard-valkyrie
+  definition: /swagger/v1/swagger.json
+---
+apiVersion: backstage.io/v1alpha1
+kind: API
+metadata:
+  name: heimdall-midgard-valkyrie-host-worker
+  title: Valkyrie worker host
+  description: Retrievs integration events from Kafka topics
+  tags:
+    - midgard
+    - valkyrie
+    - dotnet
+    - kafka
+    - asyncapi
+    - microservice
+  annotations:
+    backstage.io/techdocs-entity: location:default/heimdall-template-dotnet-microservice
+spec:
+  type: openapi
+  lifecycle: production
+  owner: platform-engineering
+  system: heimdall-midgard-valkyrie
+  definition: /swagger/v1/swagger.json

@@ -1,0 +1,9 @@
+apiVersion: backstage.io/v1alpha1
+kind: User
+metadata:
+  name: TTAE
+spec:
+  profile:
+    displayName: Tobias Andersen
+    email: ttae@novonordisk.com
+  memberOf: [platform-engineering]
