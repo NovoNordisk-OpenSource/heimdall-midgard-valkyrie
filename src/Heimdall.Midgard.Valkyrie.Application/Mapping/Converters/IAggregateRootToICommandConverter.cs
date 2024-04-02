@@ -16,7 +16,7 @@ public class IAggregateRootToICommandConverter : ITypeConverter<IAggregateRoot, 
             case ScaffoldTask entity:
                 if (entity.Id == Guid.Empty)
                 {
-                    destination = new CreateScaffoldTaskCommand(entity.Options);
+                    destination = new CreateScaffoldTaskCommand(entity.Account, entity.Options);
                 }
                 else
                 {

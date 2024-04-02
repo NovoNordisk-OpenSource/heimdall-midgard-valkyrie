@@ -20,7 +20,7 @@ public sealed class CreateScaffoldTaskCommandHandler(IScaffoldService ScaffoldSe
     /// <returns>The created scaffold task.</returns>
     public async Task<ScaffoldTask> Handle(CreateScaffoldTaskCommand command, CancellationToken ct = default)
     {
-        return await _ScaffoldService.AddScaffoldTaskAsync(command.Options, ct);
+        return await _ScaffoldService.AddScaffoldTaskAsync(command.Account, command.Options, ct);
     }
 
     async Task<IAggregateRoot> IRequestHandler<CreateScaffoldTaskCommand, IAggregateRoot>.Handle(CreateScaffoldTaskCommand request, CancellationToken ct)

@@ -22,19 +22,9 @@ namespace Heimdall.Midgard.Valkyrie.Domain.Aggregates;
 ///     In your code, ScaffoldTask is an Aggregate Root as it implements the IAggregateRoot interface. This means that
 ///     ScaffoldTask is the entry point for any operations that involve the aggregate it's part of.
 /// </remarks>
-public sealed class ScaffoldTask : Entity<Guid>, IAggregateRoot
+public sealed class ScaffoldTask : AggregateRoot<Guid>
 {
     private readonly List<ScaffoldOption> _options = [];
-
-    /// <summary>
-    ///     Initializes a new instance of the <see cref="ScaffoldTask" /> class.
-    /// </summary>
-    public ScaffoldTask()
-    {
-        var evt = new ScaffoldTaskCreatedEvent(this);
-
-        AddDomainEvent(evt);
-    }
 
     /// <summary>
     ///     Gets the collection of scaffold options associated with this entity.
@@ -47,23 +37,26 @@ public sealed class ScaffoldTask : Entity<Guid>, IAggregateRoot
     public DateTime Created { get; } = DateTime.UtcNow;
     
     /// <summary>
-    ///     Gets the AccountIdentifier of this entity.
+    ///     Gets the AccountInfo object of this entity.
     /// </summary>
-    public string AccountIdentifier { get; } = string.Empty;
-    
-    /// <summary>
-    ///     Gets the AccountRole of this entity.
-    /// </summary>
-    public string AccountRole { get; } = string.Empty;
+    public AccountInfo Account { get; private set; }
 
-    /// <summary>
-    ///     Validates the entity.
-    /// </summary>
-    /// <param name="validationContext">The validation context.</param>
-    /// <returns>A collection of validation results.</returns>
-    public override IEnumerable<ValidationResult> Validate(ValidationContext validationContext)
+    private ScaffoldTask() : base()
     {
-        return [];
+        Account ??= new AccountInfo("default", "default");
+
+        var evt = new ScaffoldTaskCreatedEvent(this);
+
+        AddDomainEvent(evt);
+    }
+
+    public ScaffoldTask(AccountInfo accountInfo) : this()
+    {
+        Account = accountInfo;
+
+        var evt = new ScaffoldTaskCreatedEvent(this);
+
+        AddDomainEvent(evt);
     }
 
     /// <summary>
@@ -110,5 +103,15 @@ public sealed class ScaffoldTask : Entity<Guid>, IAggregateRoot
     {
         foreach (var option in options)
             RemoveScaffoldOption(option);
+    }
+
+    /// <summary>
+    ///     Validates the entity.
+    /// </summary>
+    /// <param name="validationContext">The validation context.</param>
+    /// <returns>A collection of validation results.</returns>
+    public override IEnumerable<ValidationResult> Validate(ValidationContext validationContext)
+    {
+        return [];
     }
 }

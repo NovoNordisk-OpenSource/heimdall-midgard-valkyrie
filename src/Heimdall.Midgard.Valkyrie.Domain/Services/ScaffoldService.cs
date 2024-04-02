@@ -45,12 +45,13 @@ public sealed class ScaffoldService(IScaffoldTaskRepository scaffoldTaskReposito
     /// <summary>
     ///     Adds a new scaffold task asynchronously.
     /// </summary>
-    /// <param name="objects">The collection of scaffold options (optional).</param>
+    /// <param name="account">The account associated with the scaffold task.</param>
+    /// <param name="options">The collection of scaffold options (optional).</param>
     /// <param name="ct">The cancellation token.</param>
     /// <returns>The added scaffold task.</returns>
-    public async Task<ScaffoldTask> AddScaffoldTaskAsync(IEnumerable<ScaffoldOption>? options, CancellationToken ct = default)
+    public async Task<ScaffoldTask> AddScaffoldTaskAsync(AccountInfo account, IEnumerable<ScaffoldOption>? options, CancellationToken ct = default)
     {
-        var entity = new ScaffoldTask();
+        var entity = new ScaffoldTask(account);
 
         if (options != null)
             entity.AddScaffoldOption(options);
