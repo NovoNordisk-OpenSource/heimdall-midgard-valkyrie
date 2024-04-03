@@ -11,7 +11,6 @@ namespace Heimdall.Midgard.Valkyrie.Application.Commands.Domain;
 [method: JsonConstructor]
 public sealed class GetScaffoldTaskByDateRangeCommand(DateTime startDate, DateTime? endDate) : ICommand<IEnumerable<ScaffoldTask>>
 {
-
     /// <summary>
     ///     Gets or sets the start date of the date range.
     /// </summary>

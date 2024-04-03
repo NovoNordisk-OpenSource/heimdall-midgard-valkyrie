@@ -80,7 +80,7 @@ public sealed class ScaffoldTask : AggregateRoot<Guid>
     }
 
     /// <summary>
-    /// Queues the scaffold task for processing.
+    /// Marks the scaffold task as queued.
     /// </summary>
     public void Queue()
     {
@@ -95,16 +95,16 @@ public sealed class ScaffoldTask : AggregateRoot<Guid>
     }
 
     /// <summary>
-    /// Marks the scaffold task as succeeded.
+    /// Marks the scaffold task as completed.
     /// </summary>
-    public void Succeeded()
+    public void Complete()
     {
         if (Status != ScaffoldTaskStatus.Queued)
         {
             return;
         }
 
-        Status = ScaffoldTaskStatus.Succeeded;
+        Status = ScaffoldTaskStatus.Completed;
 
         AddDomainEvent(new ScaffoldTaskCompletedEvent(this));
     }
@@ -112,7 +112,7 @@ public sealed class ScaffoldTask : AggregateRoot<Guid>
     /// <summary>
     /// Marks the scaffold task as failed.
     /// </summary>
-    public void Failed()
+    public void Fail()
     {
         if (Status != ScaffoldTaskStatus.Queued)
         {
@@ -125,9 +125,9 @@ public sealed class ScaffoldTask : AggregateRoot<Guid>
     }
 
     /// <summary>
-    /// Cancels the scaffold task if it is in the queued status.
+    /// Marks the scaffold task as cancelled.
     /// </summary>
-    public void Cancelled()
+    public void Cancel()
     {
         if (Status != ScaffoldTaskStatus.Queued)
         {

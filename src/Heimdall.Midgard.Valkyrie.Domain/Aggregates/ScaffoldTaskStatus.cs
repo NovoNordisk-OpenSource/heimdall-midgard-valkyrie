@@ -9,7 +9,7 @@ public sealed class ScaffoldTaskStatus : EntityEnumeration
     public static ScaffoldTaskStatus Queued = new(2, nameof(Queued).ToLowerInvariant());
 
     [System.Diagnostics.CodeAnalysis.SuppressMessage("Usage", "CA2211:Non-constant fields should not be visible", Justification = "<Pending>")]
-    public static ScaffoldTaskStatus Succeeded = new(4, nameof(Succeeded).ToLowerInvariant());
+    public static ScaffoldTaskStatus Completed = new(4, nameof(Completed).ToLowerInvariant());
 
     [System.Diagnostics.CodeAnalysis.SuppressMessage("Usage", "CA2211:Non-constant fields should not be visible", Justification = "<Pending>")]
     public static ScaffoldTaskStatus Failed = new(8, nameof(Failed).ToLowerInvariant());
@@ -27,7 +27,7 @@ public sealed class ScaffoldTaskStatus : EntityEnumeration
         {
             Created,
             Queued,
-            Succeeded,
+            Completed,
             Failed,
             Cancelled
         };

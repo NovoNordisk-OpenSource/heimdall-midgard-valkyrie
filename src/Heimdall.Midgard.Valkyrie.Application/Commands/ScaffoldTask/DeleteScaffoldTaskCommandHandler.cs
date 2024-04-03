@@ -23,6 +23,6 @@ public sealed class DeleteScaffoldTaskCommandHandler(IScaffoldService ScaffoldSe
     /// </returns>
     public async Task<bool> Handle(DeleteScaffoldTaskCommand command, CancellationToken ct = default)
     {
-        return await _ScaffoldService.DeleteScaffoldTaskAsync(command.EntityId, ct);
+        return await _ScaffoldService.DeleteScaffoldTaskAsync(command.Id, ct);
     }
 }

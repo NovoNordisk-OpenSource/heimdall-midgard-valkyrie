@@ -8,12 +8,11 @@ namespace Heimdall.Midgard.Valkyrie.Application.Commands.Domain;
 /// </remarks>
 /// <param name="entityId">The ID of the entity to be deleted.</param>
 [method: JsonConstructor]
-public sealed class DeleteScaffoldTaskCommand(Guid entityId) : ICommand<bool>
+public sealed class DeleteScaffoldTaskCommand(Guid id) : ICommand<bool>
 {
-
     /// <summary>
     ///     Gets or sets the ID of the entity to be deleted.
     /// </summary>
-    [JsonPropertyName("entityId")]
-    public Guid EntityId { get; init; } = entityId;
+    [JsonPropertyName("id")]
+    public Guid Id { get; init; } = id;
 }
