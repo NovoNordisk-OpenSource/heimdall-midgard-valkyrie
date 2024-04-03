@@ -26,19 +26,23 @@ public class ScaffoldTaskTypeConfiguration : IEntityTypeConfiguration<ScaffoldTa
         builder.HasKey(v => v.Id);
         builder.Ignore(v => v.DomainEvents);
         builder.Property(v => v.Id).IsRequired();
-        builder.Property(v => v.Created).IsRequired();
+        builder.Property(v => v.Created).IsRequired();        
+        builder.Property<int>("StatusId").IsRequired();
 
         builder.HasOne(o => o.Account)
                .WithMany()
                .HasForeignKey("AccountId");
 
-        builder.OwnsMany(
-            p => p.Options, a =>
-            {
-                a.WithOwner().HasForeignKey("OwnerId");
-                a.Property<Guid>("Id");
-                a.HasKey("Id");
-            });
+        builder.HasOne(o => o.Status)
+               .WithMany()
+               .HasForeignKey("StatusId");
+
+        builder.OwnsMany(p => p.Options, a =>
+        {
+            a.WithOwner().HasForeignKey("OwnerId");
+            a.Property<Guid>("Id");
+            a.HasKey("Id");
+        });
         
         if (_seed != null)
         {

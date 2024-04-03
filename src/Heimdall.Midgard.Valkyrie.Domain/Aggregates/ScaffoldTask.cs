@@ -24,6 +24,12 @@ namespace Heimdall.Midgard.Valkyrie.Domain.Aggregates;
 /// </remarks>
 public sealed class ScaffoldTask : AggregateRoot<Guid>
 {
+    private ScaffoldTaskStatus _status = ScaffoldTaskStatus.Created;
+
+    #pragma warning disable IDE0052 // Remove unread private members
+    private int _statusId = ScaffoldTaskStatus.Created.Id;
+    #pragma warning restore IDE0052 // Remove unread private members
+
     private readonly List<ScaffoldOption> _options = [];
 
     /// <summary>
@@ -39,12 +45,26 @@ public sealed class ScaffoldTask : AggregateRoot<Guid>
     /// <summary>
     ///     Gets the AccountInfo object of this entity.
     /// </summary>
-    public AccountInfo Account { get; private set; }
+    public AccountInfo Account { get; private set; } = new AccountInfo("default", "default");
+
+    /// <summary>
+    /// Gets or sets the status of the scaffold task.
+    /// </summary>
+    public ScaffoldTaskStatus Status
+    {
+        get
+        {
+            return _status;
+        }
+        private set
+        {
+            _status = value;
+            _statusId = _status.Id;
+        }
+    }
 
     private ScaffoldTask() : base()
     {
-        Account ??= new AccountInfo("default", "default");
-
         var evt = new ScaffoldTaskCreatedEvent(this);
 
         AddDomainEvent(evt);
@@ -57,6 +77,66 @@ public sealed class ScaffoldTask : AggregateRoot<Guid>
         var evt = new ScaffoldTaskCreatedEvent(this);
 
         AddDomainEvent(evt);
+    }
+
+    /// <summary>
+    /// Queues the scaffold task for processing.
+    /// </summary>
+    public void Queue()
+    {
+        if (Status != ScaffoldTaskStatus.Created)
+        {
+            return;
+        }
+
+        Status = ScaffoldTaskStatus.Queued;
+
+        AddDomainEvent(new ScaffoldTaskQueuedEvent(this));
+    }
+
+    /// <summary>
+    /// Marks the scaffold task as succeeded.
+    /// </summary>
+    public void Succeeded()
+    {
+        if (Status != ScaffoldTaskStatus.Queued)
+        {
+            return;
+        }
+
+        Status = ScaffoldTaskStatus.Succeeded;
+
+        AddDomainEvent(new ScaffoldTaskCompletedEvent(this));
+    }
+
+    /// <summary>
+    /// Marks the scaffold task as failed.
+    /// </summary>
+    public void Failed()
+    {
+        if (Status != ScaffoldTaskStatus.Queued)
+        {
+            return;
+        }
+
+        Status = ScaffoldTaskStatus.Failed;
+
+        AddDomainEvent(new ScaffoldTaskCompletedEvent(this));
+    }
+
+    /// <summary>
+    /// Cancels the scaffold task if it is in the queued status.
+    /// </summary>
+    public void Cancelled()
+    {
+        if (Status != ScaffoldTaskStatus.Queued)
+        {
+            return;
+        }
+
+        Status = ScaffoldTaskStatus.Cancelled;
+
+        AddDomainEvent(new ScaffoldTaskCompletedEvent(this));
     }
 
     /// <summary>
