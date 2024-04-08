@@ -1,7 +1,7 @@
 // Global using directives
 
 global using Heimdall.Midgard.Valkyrie.Application;
-global using Heimdall.Midgard.Valkyrie.Application.Commands.Domain;
+global using Heimdall.Midgard.Valkyrie.Application.Commands;
 global using Heimdall.Midgard.Valkyrie.Application.Telemetry;
 global using Heimdall.Midgard.Valkyrie.Domain.Aggregates;
 global using Heimdall.Midgard.Valkyrie.Infrastructure;

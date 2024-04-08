@@ -2,7 +2,7 @@
 
 global using BeHeroes.CodeOps.Abstractions.Data;
 global using Heimdall.Midgard.Valkyrie.Domain.Aggregates;
-global using Heimdall.Midgard.Valkyrie.Domain.Events.Domain;
+global using Heimdall.Midgard.Valkyrie.Domain.Events;
 global using Heimdall.Midgard.Valkyrie.Domain.Repositories;
 global using Heimdall.Midgard.Valkyrie.Domain.Services;
 global using Heimdall.Midgard.Valkyrie.Domain.ValueObjects;

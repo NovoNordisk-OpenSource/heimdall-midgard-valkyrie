@@ -15,7 +15,7 @@ global using BeHeroes.CodeOps.Security.Policies;
 global using Confluent.Kafka;
 global using Confluent.Kafka.Admin;
 global using Heimdall.Midgard.Valkyrie.Application;
-global using Heimdall.Midgard.Valkyrie.Application.Events.Domain;
+global using Heimdall.Midgard.Valkyrie.Application.Events.Integration;
 global using Heimdall.Midgard.Valkyrie.Application.Telemetry;
 global using Heimdall.Midgard.Valkyrie.Domain.Aggregates;
 global using Heimdall.Midgard.Valkyrie.Domain.Repositories;
