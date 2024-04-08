@@ -3,9 +3,14 @@
     <PropertyGroup>
         <TargetFramework>net8.0</TargetFramework>
         <IsPackable>false</IsPackable>
+        <UserSecretsId>20c33e5d-c998-4d6d-98ec-5f3180048567</UserSecretsId>
     </PropertyGroup>
 
     <ItemGroup>
+        <PackageReference Include="Microsoft.Extensions.Configuration" Version="8.0.0" />
+        <PackageReference Include="Microsoft.Extensions.Configuration.Binder" Version="8.0.0" />
+        <PackageReference Include="Microsoft.Extensions.Configuration.EnvironmentVariables" Version="8.0.0" />
+        <PackageReference Include="Microsoft.Extensions.Configuration.UserSecrets" Version="8.0.0" />
         <PackageReference Include="Microsoft.NET.Test.Sdk" Version="17.10.0-release-24177-07" />
         <PackageReference Include="Moq" Version="4.20.70" />
         <PackageReference Include="xunit" Version="2.6.6" />
@@ -20,7 +25,17 @@
     </ItemGroup>
 
     <ItemGroup>
-      <ProjectReference Include="..\..\src\Heimdall.Midgard.Valkyrie.Application\Heimdall.Midgard.Valkyrie.Application.csproj" />
+      <None Remove="appsettings.json" />
+    </ItemGroup>
+
+    <ItemGroup>
+      <Content Include="appsettings.json">
+        <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+      </Content>
+    </ItemGroup>
+
+    <ItemGroup>
+      <ProjectReference Include="..\..\src\Heimdall.Midgard.Valkyrie.Infrastructure\Heimdall.Midgard.Valkyrie.Infrastructure.csproj" />
     </ItemGroup>
 
 </Project>

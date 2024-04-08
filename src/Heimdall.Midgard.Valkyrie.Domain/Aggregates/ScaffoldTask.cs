@@ -63,22 +63,18 @@ public sealed class ScaffoldTask : AggregateRoot<Guid>
         }
     }
 
-    private ScaffoldTask(bool recordEvent = false) : base()
+    private ScaffoldTask() : base()
     {
-        if (recordEvent)
-        {
-            AddDomainEvent(new ScaffoldTaskCreatedEvent(this));
-        }
     }
 
-    public ScaffoldTask(AccountInfo account, IEnumerable<ScaffoldOption>? options = default) : this(options is null)
-    {
+    public ScaffoldTask(AccountInfo account, IEnumerable<ScaffoldOption>? options = default) : this()
+    {        
+        AddDomainEvent(new ScaffoldTaskCreatedEvent(this));
+
         Account = account;
         
         if (options is not null)
         {
-            AddDomainEvent(new ScaffoldTaskCreatedEvent(this));
-
             AddScaffoldOption(options);
         }
     }
