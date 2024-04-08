@@ -5,15 +5,23 @@ VisualStudioVersion = 17.5.002.0
 MinimumVisualStudioVersion = 10.0.40219.1
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "src", "src", "{641C8D36-3046-4F1F-8C6A-81F13DFE72ED}"
 EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "test", "test", "{1F9631EB-D5BB-40EF-BEB1-3A11881C3166}"
+EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Heimdall.Midgard.Valkyrie.Domain", "src\Heimdall.Midgard.Valkyrie.Domain\Heimdall.Midgard.Valkyrie.Domain.csproj", "{2BF0BF9D-C162-47D5-B756-430A9C8F1977}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Heimdall.Midgard.Valkyrie.Application", "src\Heimdall.Midgard.Valkyrie.Application\Heimdall.Midgard.Valkyrie.Application.csproj", "{A97347F5-60D9-4B5E-98C9-68C0A1DDB1F8}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Heimdall.Midgard.Valkyrie.Application", "src\Heimdall.Midgard.Valkyrie.Application\Heimdall.Midgard.Valkyrie.Application.csproj", "{A97347F5-60D9-4B5E-98C9-68C0A1DDB1F8}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Heimdall.Midgard.Valkyrie.Host.Api", "src\Heimdall.Midgard.Valkyrie.Host.Api\Heimdall.Midgard.Valkyrie.Host.Api.csproj", "{9C51A860-C5F2-494C-A09F-985A1D5F2B5B}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Heimdall.Midgard.Valkyrie.Host.Api", "src\Heimdall.Midgard.Valkyrie.Host.Api\Heimdall.Midgard.Valkyrie.Host.Api.csproj", "{9C51A860-C5F2-494C-A09F-985A1D5F2B5B}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Heimdall.Midgard.Valkyrie.Host.Worker", "src\Heimdall.Midgard.Valkyrie.Host.Worker\Heimdall.Midgard.Valkyrie.Host.Worker.csproj", "{8877F348-F0FE-415B-A252-F37D18FE65FB}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Heimdall.Midgard.Valkyrie.Host.Worker", "src\Heimdall.Midgard.Valkyrie.Host.Worker\Heimdall.Midgard.Valkyrie.Host.Worker.csproj", "{8877F348-F0FE-415B-A252-F37D18FE65FB}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Heimdall.Midgard.Valkyrie.Infrastructure", "src\Heimdall.Midgard.Valkyrie.Infrastructure\Heimdall.Midgard.Valkyrie.Infrastructure.csproj", "{2DDE6A33-FDBC-4E03-848B-5BD71AF939EC}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Heimdall.Midgard.Valkyrie.Infrastructure", "src\Heimdall.Midgard.Valkyrie.Infrastructure\Heimdall.Midgard.Valkyrie.Infrastructure.csproj", "{2DDE6A33-FDBC-4E03-848B-5BD71AF939EC}"
+EndProject
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Heimdall.Midgard.Valkyrie.Domain.UnitTest", "test\Heimdall.Midgard.Valkyrie.Domain.UnitTest\Heimdall.Midgard.Valkyrie.Domain.UnitTest.csproj", "{7E14B7A9-ADB4-4103-95FD-7C716383DB58}"
+EndProject
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Heimdall.Midgard.Valkyrie.Application.UnitTest", "test\Heimdall.Midgard.Valkyrie.Application.UnitTest\Heimdall.Midgard.Valkyrie.Application.UnitTest.csproj", "{2621FF16-C6A9-473C-A107-115DE582B752}"
+EndProject
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Heimdall.Midgard.Valkyrie.Application.IntegrationTest", "test\Heimdall.Midgard.Valkyrie.Application.IntegrationTest\Heimdall.Midgard.Valkyrie.Application.IntegrationTest.csproj", "{3597D7BF-59FC-46ED-BC36-2096043E815F}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -41,12 +49,31 @@ Global
 		{2DDE6A33-FDBC-4E03-848B-5BD71AF939EC}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{2DDE6A33-FDBC-4E03-848B-5BD71AF939EC}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{2DDE6A33-FDBC-4E03-848B-5BD71AF939EC}.Release|Any CPU.Build.0 = Release|Any CPU
+		{7E14B7A9-ADB4-4103-95FD-7C716383DB58}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{7E14B7A9-ADB4-4103-95FD-7C716383DB58}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{7E14B7A9-ADB4-4103-95FD-7C716383DB58}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{7E14B7A9-ADB4-4103-95FD-7C716383DB58}.Release|Any CPU.Build.0 = Release|Any CPU
+		{2621FF16-C6A9-473C-A107-115DE582B752}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{2621FF16-C6A9-473C-A107-115DE582B752}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{2621FF16-C6A9-473C-A107-115DE582B752}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{2621FF16-C6A9-473C-A107-115DE582B752}.Release|Any CPU.Build.0 = Release|Any CPU
+		{3597D7BF-59FC-46ED-BC36-2096043E815F}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{3597D7BF-59FC-46ED-BC36-2096043E815F}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{3597D7BF-59FC-46ED-BC36-2096043E815F}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{3597D7BF-59FC-46ED-BC36-2096043E815F}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
 	EndGlobalSection
 	GlobalSection(NestedProjects) = preSolution
 		{2BF0BF9D-C162-47D5-B756-430A9C8F1977} = {641C8D36-3046-4F1F-8C6A-81F13DFE72ED}
+		{2DDE6A33-FDBC-4E03-848B-5BD71AF939EC} = {641C8D36-3046-4F1F-8C6A-81F13DFE72ED}
+		{A97347F5-60D9-4B5E-98C9-68C0A1DDB1F8} = {641C8D36-3046-4F1F-8C6A-81F13DFE72ED}
+		{9C51A860-C5F2-494C-A09F-985A1D5F2B5B} = {641C8D36-3046-4F1F-8C6A-81F13DFE72ED}
+		{8877F348-F0FE-415B-A252-F37D18FE65FB} = {641C8D36-3046-4F1F-8C6A-81F13DFE72ED}
+		{7E14B7A9-ADB4-4103-95FD-7C716383DB58} = {1F9631EB-D5BB-40EF-BEB1-3A11881C3166}
+		{2621FF16-C6A9-473C-A107-115DE582B752} = {1F9631EB-D5BB-40EF-BEB1-3A11881C3166}
+		{3597D7BF-59FC-46ED-BC36-2096043E815F} = {1F9631EB-D5BB-40EF-BEB1-3A11881C3166}
 	EndGlobalSection
 	GlobalSection(ExtensibilityGlobals) = postSolution
 		SolutionGuid = {CE319D0A-F2BD-4BB3-962D-331AA3CFAECA}

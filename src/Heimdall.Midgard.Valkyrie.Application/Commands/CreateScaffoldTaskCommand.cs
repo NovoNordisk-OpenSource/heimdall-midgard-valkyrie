@@ -8,7 +8,7 @@ namespace Heimdall.Midgard.Valkyrie.Application.Commands;
 /// </remarks>
 /// <param name="options">The collection of scaffold options associated with the entity.</param>
 [method: JsonConstructor]
-public sealed class CreateScaffoldTaskCommand(AccountInfo accountInfo, IEnumerable<ScaffoldOption> options) : ICommand<ScaffoldTask>
+public sealed class CreateScaffoldTaskCommand(AccountInfo account, IEnumerable<ScaffoldOption> options) : ICommand<ScaffoldTask>
 {
     /// <summary>
     ///     Gets or sets the collection of scaffold options associated with the entity.
@@ -20,5 +20,5 @@ public sealed class CreateScaffoldTaskCommand(AccountInfo accountInfo, IEnumerab
     ///     Gets or sets the account associated with the entity.
     /// </summary>
     [JsonPropertyName("account")]
-    public AccountInfo Account { get; init; } = accountInfo;
+    public AccountInfo Account { get; init; } = account;
 }

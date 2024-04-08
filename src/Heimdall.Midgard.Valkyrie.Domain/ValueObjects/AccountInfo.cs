@@ -29,6 +29,7 @@ public sealed class AccountInfo(string identifier, string role) : ValueObject
     /// <summary>
     ///     Gets the account provider value computed based on the identifier.
     /// </summary>
+    [JsonIgnore]
     public string Provider  => Guid.TryParse(Identifier, out _) ? "azure" : "aws";
 
     /// <summary>

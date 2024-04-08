@@ -5,7 +5,7 @@ namespace Heimdall.Midgard.Valkyrie.Application.Telemetry;
 /// </summary>
 public static class Metrics
 {
-    public static Meter RequestMeter { get; } = new("application.requests", "1.0.0");
+    public static Meter RequestMeter { get; } = new("application.requests", Service.Version);
 
-    public static Meter EventMeter { get; } = new("application.events", "1.0.0");
+    public static Meter EventMeter { get; } = new("application.events", Service.Version);
 }
