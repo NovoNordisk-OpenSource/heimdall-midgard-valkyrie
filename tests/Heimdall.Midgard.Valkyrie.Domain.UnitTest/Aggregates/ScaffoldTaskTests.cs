@@ -24,6 +24,5 @@ public class ScaffoldTaskTests
 
         //Assert
         Assert.True(!validationResults.Any());
-        Assert.Contains(sut.DomainEvents, i => i is ScaffoldTaskCreatedEvent);
     }
 }

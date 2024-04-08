@@ -1,6 +1,6 @@
 namespace Heimdall.Midgard.Valkyrie.Domain.Aggregates;
 
-public sealed class ScaffoldTaskStatus : EntityEnumeration
+public sealed class ScaffoldTaskStatus(int id, string name) : EntityEnumeration(id, name)
 {
     [System.Diagnostics.CodeAnalysis.SuppressMessage("Usage", "CA2211:Non-constant fields should not be visible", Justification = "<Pending>")]
     public static ScaffoldTaskStatus Created = new(1, nameof(Created).ToLowerInvariant());
@@ -16,10 +16,6 @@ public sealed class ScaffoldTaskStatus : EntityEnumeration
 
     [System.Diagnostics.CodeAnalysis.SuppressMessage("Usage", "CA2211:Non-constant fields should not be visible", Justification = "<Pending>")]
     public static ScaffoldTaskStatus Cancelled = new(16, nameof(Cancelled).ToLowerInvariant());
-
-    public ScaffoldTaskStatus(int id, string name) : base(id, name)
-    {
-    }
 
     public static IEnumerable<ScaffoldTaskStatus> List()
     {

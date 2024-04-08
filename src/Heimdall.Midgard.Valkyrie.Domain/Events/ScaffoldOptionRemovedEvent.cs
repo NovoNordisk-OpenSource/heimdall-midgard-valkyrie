@@ -9,15 +9,15 @@ public sealed class ScaffoldOptionRemovedEvent : ScaffoldTaskEvent
     ///     Initializes a new instance of the <see cref="ScaffoldOptionRemovedEvent" /> class.
     /// </summary>
     /// <param name="entity">The scaffold task from which the object was removed.</param>
-    /// <param name="object">The scaffold option that was removed.</param>
-    public ScaffoldOptionRemovedEvent(ScaffoldTask entity, ScaffoldOption @object)
+    /// <param name="option">The scaffold option that was removed.</param>
+    public ScaffoldOptionRemovedEvent(ScaffoldTask entity, ScaffoldOption option)
     {
         Entity = entity;
-        Object = @object;
+        Option = option;
     }
 
     /// <summary>
     ///     Gets the scaffold option that was removed.
     /// </summary>
-    public ScaffoldOption Object { get; private set; }
+    public ScaffoldOption Option { get; private set; }
 }

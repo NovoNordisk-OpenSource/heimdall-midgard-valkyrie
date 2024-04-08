@@ -1,15 +1,15 @@
-﻿namespace Heimdall.Midgard.Valkyrie.Domain.UnitTest.Events.Domain;
+﻿namespace Heimdall.Midgard.Valkyrie.Domain.UnitTest.Events;
 
-public class ScaffoldTaskCreatedEventTests
+public class ScaffoldTaskQueuedEventTests
 {
     [Fact]
     public void CanBeConstructed()
     {
         //Arrange
-        ScaffoldTaskCreatedEvent sut;
+        ScaffoldTaskQueuedEvent sut;
 
         //Act
-        sut = new ScaffoldTaskCreatedEvent(null);
+        sut = new ScaffoldTaskQueuedEvent(null);
 
         //Assert
         Assert.NotNull(sut);
@@ -21,14 +21,14 @@ public class ScaffoldTaskCreatedEventTests
     {
         //Arrange
         var scaffoldTask = new ScaffoldTask(new AccountInfo("default", "default"));
-        var sut = new ScaffoldTaskCreatedEvent(scaffoldTask);
+        var sut = new ScaffoldTaskQueuedEvent(scaffoldTask);
 
         //Act
-        var anotherEvent = new ScaffoldTaskCreatedEvent(scaffoldTask);
+        var anotherEvent = new ScaffoldTaskQueuedEvent(scaffoldTask);
 
         //Assert
         Assert.True(sut.Entity == scaffoldTask);
         Assert.True(anotherEvent.Entity == scaffoldTask);
-        Assert.False(sut.Equals(scaffoldTask));
+        Assert.False(sut.Equals(anotherEvent));
     }
 }
