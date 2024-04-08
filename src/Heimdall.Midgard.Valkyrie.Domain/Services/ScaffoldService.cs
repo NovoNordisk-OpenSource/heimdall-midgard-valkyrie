@@ -22,12 +22,12 @@ public sealed class ScaffoldService(IScaffoldTaskRepository scaffoldTaskReposito
     /// <summary>
     ///     Retrieves a scaffold task by its identifier asynchronously.
     /// </summary>
-    /// <param name="entityId">The entity identifier.</param>
+    /// <param name="scaffoldTaskId">The entity identifier.</param>
     /// <param name="ct">The cancellation token.</param>
     /// <returns>The scaffold task with the specified identifier, or null if not found.</returns>
-    public async Task<ScaffoldTask?> GetScaffoldTaskByIdAsync(Guid entityId, CancellationToken ct = default)
+    public async Task<ScaffoldTask?> GetScaffoldTaskByIdAsync(Guid scaffoldTaskId, CancellationToken ct = default)
     {
-        return await _scaffoldTaskRepository.GetAsync(entityId, ct);
+        return await _scaffoldTaskRepository.GetAsync(scaffoldTaskId, ct);
     }
 
     /// <summary>
@@ -66,15 +66,15 @@ public sealed class ScaffoldService(IScaffoldTaskRepository scaffoldTaskReposito
     /// <summary>
     ///     Adds or updates a scaffold option asynchronously.
     /// </summary>
-    /// <param name="entityId">The entity identifier.</param>
+    /// <param name="scaffoldTaskId">The entity identifier.</param>
     /// <param name="key">The key.</param>
     /// <param name="value">The value.</param>
     /// <param name="ct">The cancellation token.</param>
     /// <returns>The added or updated scaffold option.</returns>
-    public async Task<ScaffoldOption> AddOrUpdateScaffoldOptionAsync(Guid entityId, string key, string value, CancellationToken ct = default)
+    public async Task<ScaffoldOption> AddOrUpdateScaffoldOptionAsync(Guid scaffoldTaskId, string key, string value, CancellationToken ct = default)
     {
         var option = new ScaffoldOption(key, value);
-        var entity = await _scaffoldTaskRepository.GetAsync(entityId, ct);
+        var entity = await _scaffoldTaskRepository.GetAsync(scaffoldTaskId, ct);
 
         if (entity is not null && entity.Options != null && !entity.Options.Any(o => o.Equals(option)))
         {
@@ -88,12 +88,12 @@ public sealed class ScaffoldService(IScaffoldTaskRepository scaffoldTaskReposito
     /// <summary>
     ///     Deletes a scaffold task asynchronously.
     /// </summary>
-    /// <param name="entityId">The entity identifier.</param>
+    /// <param name="scaffoldTaskId">The entity identifier.</param>
     /// <param name="ct">The cancellation token.</param>
     /// <returns>True if the scaffold task is deleted, otherwise false.</returns>
-    public async Task<bool> DeleteScaffoldTaskAsync(Guid entityId, CancellationToken ct = default)
+    public async Task<bool> DeleteScaffoldTaskAsync(Guid scaffoldTaskId, CancellationToken ct = default)
     {
-        var entity = await _scaffoldTaskRepository.GetAsync(entityId, ct);
+        var entity = await _scaffoldTaskRepository.GetAsync(scaffoldTaskId, ct);
 
         if (entity is not null) _scaffoldTaskRepository.Delete(entity);
 
@@ -103,14 +103,13 @@ public sealed class ScaffoldService(IScaffoldTaskRepository scaffoldTaskReposito
     /// <summary>
     ///     Deletes a scaffold option asynchronously.
     /// </summary>
-    /// <param name="entityId">The entity identifier.</param>
+    /// <param name="scaffoldTaskId">The entity identifier.</param>
     /// <param name="key">The key.</param>
-    /// <param name="capabilityIdentifier">The capability identifier (optional).</param>
     /// <param name="ct">The cancellation token.</param>
     /// <returns>True if the scaffold option is deleted, otherwise false.</returns>
-    public async Task<bool> DeleteScaffoldOptionAsync(Guid entityId, string key, CancellationToken ct = default)
+    public async Task<bool> DeleteScaffoldOptionAsync(Guid scaffoldTaskId, string key, CancellationToken ct = default)
     {
-        var entity = await _scaffoldTaskRepository.GetAsync(entityId, ct);
+        var entity = await _scaffoldTaskRepository.GetAsync(scaffoldTaskId, ct);
 
         if (entity is not null)
         {

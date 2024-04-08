@@ -6,6 +6,7 @@ namespace Heimdall.Midgard.Valkyrie.Application.Commands;
 /// <remarks>
 ///     Initializes a new instance of the <see cref="CreateScaffoldTaskCommand" /> class.
 /// </remarks>
+/// <param name="account">The account associated with the entity.</param>
 /// <param name="options">The collection of scaffold options associated with the entity.</param>
 [method: JsonConstructor]
 public sealed class CreateScaffoldTaskCommand(AccountInfo account, IEnumerable<ScaffoldOption> options) : ICommand<ScaffoldTask>

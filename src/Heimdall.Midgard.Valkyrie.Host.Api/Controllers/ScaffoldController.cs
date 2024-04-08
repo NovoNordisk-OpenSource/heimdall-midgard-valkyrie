@@ -162,8 +162,8 @@ public class ScaffoldController(ILogger<ScaffoldController> logger, IApplication
     /// <param name="scaffoldTask">The scaffold task to update.</param>
     /// <param name="ct">The cancellation token.</param>
     /// <returns>A the updated Scaffold Task.</returns>
-    [HttpPut]
-    public async Task<ScaffoldTask> UpdateScaffoldTaskAsync([FromBody] ScaffoldTask scaffoldTask, CancellationToken ct = default)
+    [HttpPut("{id}")]
+    public async Task<ScaffoldTask> UpdateScaffoldTaskAsync(Guid id, [FromBody] AccountInfo account, [FromBody] IEnumerable<ScaffoldOption>? options = default, CancellationToken ct = default)
     {
         // Initialize custom activity
         using var activity = Activities.ApplicationActivitySource.StartActivity(string.Format("{0}.{1}", MethodBase.GetCurrentMethod()!.DeclaringType!.FullName, MethodBase.GetCurrentMethod()!.Name));
@@ -172,7 +172,7 @@ public class ScaffoldController(ILogger<ScaffoldController> logger, IApplication
         _requestCounter.Add(1);
 
         //Initialize command to update scaffold task
-        var command = new UpdateScaffoldTaskCommand(scaffoldTask);
+        var command = new UpdateScaffoldTaskCommand(id, account, options);
 
         // Dispatch command to application facade
         var entity = await _facade.Execute(command, ct);
@@ -193,7 +193,7 @@ public class ScaffoldController(ILogger<ScaffoldController> logger, IApplication
     /// <param name="scaffoldTask">The scaffold task to update.</param>
     /// <param name="ct">The cancellation token.</param>
     /// <returns>A the updated Scaffold Task.</returns>
-    [HttpDelete]
+    [HttpDelete("{id}")]
     public async Task<bool> DeleteScaffoldTaskAsync(Guid id, CancellationToken ct = default)
     {
         // Initialize custom activity

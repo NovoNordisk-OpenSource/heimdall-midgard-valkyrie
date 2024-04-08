@@ -15,6 +15,6 @@ public sealed class CreateScaffoldOptionCommandHandler(IScaffoldService Scaffold
     /// <returns>The created scaffold option.</returns>
     public async Task<ScaffoldOption> Handle(CreateScaffoldOptionCommand command, CancellationToken cancellationToken = default)
     {
-        return await _ScaffoldService.AddOrUpdateScaffoldOptionAsync(command.EntityId, command.Key, command.Value, cancellationToken);
+        return await _ScaffoldService.AddOrUpdateScaffoldOptionAsync(command.ScaffoldTaskId, command.Key, command.Value, cancellationToken);
     }
 }

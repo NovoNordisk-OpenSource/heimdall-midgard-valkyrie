@@ -8,11 +8,11 @@ namespace Heimdall.Midgard.Valkyrie.Application.Commands;
 /// </remarks>
 /// <param name="id">The if of the scaffold task.</param>
 [method: JsonConstructor]
-public sealed class GetScaffoldTaskByIdCommand(Guid id) : ICommand<ScaffoldTask?>
+public sealed class GetScaffoldTaskByIdCommand(Guid scaffoldTaskId) : ICommand<ScaffoldTask?>
 {
     /// <summary>
     ///     Gets or sets the id.
     /// </summary>
-    [JsonPropertyName("id")]
-    public Guid Id { get; init; } = id;
+    [JsonPropertyName("scaffoldTaskId")]
+    public Guid ScaffoldTaskId { get; init; } = scaffoldTaskId;
 }

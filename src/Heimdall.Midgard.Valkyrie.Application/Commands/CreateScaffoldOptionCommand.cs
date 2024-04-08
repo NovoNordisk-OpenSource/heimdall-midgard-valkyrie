@@ -8,13 +8,13 @@ namespace Heimdall.Midgard.Valkyrie.Application.Commands;
 /// <param name="value">The value.</param>
 /// <param name="entityId">The entity identifier.</param>
 [method: JsonConstructor]
-public sealed class CreateScaffoldOptionCommand(string key, string value, Guid entityId) : ICommand<ScaffoldOption>
+public sealed class CreateScaffoldOptionCommand(Guid scaffoldTaskId, string key, string value) : ICommand<ScaffoldOption>
 {
     /// <summary>
     /// Gets or sets the entity ID.
     /// </summary>
-    [JsonPropertyName("entityId")]
-    public Guid EntityId { get; init; } = entityId;
+    [JsonPropertyName("scaffoldTaskId")]
+    public Guid ScaffoldTaskId { get; init; } = scaffoldTaskId;
 
     /// <summary>
     /// Gets or sets the key.

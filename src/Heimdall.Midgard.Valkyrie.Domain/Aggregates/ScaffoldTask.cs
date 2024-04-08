@@ -24,10 +24,10 @@ namespace Heimdall.Midgard.Valkyrie.Domain.Aggregates;
 /// </remarks>
 public sealed class ScaffoldTask : AggregateRoot<Guid>
 {
-    private ScaffoldTaskStatus _status = ScaffoldTaskStatus.Created;
+    private ScaffoldTaskStatus _status = ScaffoldTaskStatus.Ready;
 
     #pragma warning disable IDE0052 // Remove unread private members
-    private int _statusId = ScaffoldTaskStatus.Created.Id;
+    private int _statusId = ScaffoldTaskStatus.Ready.Id;
     #pragma warning restore IDE0052 // Remove unread private members
 
     private readonly List<ScaffoldOption> _options = [];
@@ -63,16 +63,24 @@ public sealed class ScaffoldTask : AggregateRoot<Guid>
         }
     }
 
-    private ScaffoldTask() : base()
+    private ScaffoldTask(bool recordEvent = false) : base()
     {
-        var evt = new ScaffoldTaskCreatedEvent(this);
-
-        AddDomainEvent(evt);
+        if (recordEvent)
+        {
+            AddDomainEvent(new ScaffoldTaskCreatedEvent(this));
+        }
     }
 
-    public ScaffoldTask(AccountInfo accountInfo) : this()
+    public ScaffoldTask(AccountInfo account, IEnumerable<ScaffoldOption>? options = default) : this(options is null)
     {
-        Account = accountInfo;
+        Account = account;
+        
+        if (options is not null)
+        {
+            AddDomainEvent(new ScaffoldTaskCreatedEvent(this));
+
+            AddScaffoldOption(options);
+        }
     }
 
     /// <summary>
@@ -80,7 +88,7 @@ public sealed class ScaffoldTask : AggregateRoot<Guid>
     /// </summary>
     public void Queue()
     {
-        if (Status != ScaffoldTaskStatus.Created)
+        if (Status != ScaffoldTaskStatus.Ready)
         {
             return;
         }
@@ -125,7 +133,7 @@ public sealed class ScaffoldTask : AggregateRoot<Guid>
     /// </summary>
     public void Cancel()
     {
-        if (Status != ScaffoldTaskStatus.Queued)
+        if (Status != ScaffoldTaskStatus.Queued || Status != ScaffoldTaskStatus.Ready)
         {
             return;
         }
@@ -141,6 +149,12 @@ public sealed class ScaffoldTask : AggregateRoot<Guid>
     /// <param name="option">The scaffold option to add.</param>
     public void AddScaffoldOption(ScaffoldOption option)
     {
+        if (Status != ScaffoldTaskStatus.Ready)
+        {
+            //TODO: Refactor string to a constant
+            throw new DomainException("Cannot add scaffold options to a scaffold task that is not in the Ready state.");
+        }
+
         _options.Add(option);
 
         var evt = new ScaffoldOptionAddedEvent(this, option);
@@ -164,6 +178,12 @@ public sealed class ScaffoldTask : AggregateRoot<Guid>
     /// <param name="option">The scaffold option to remove.</param>
     public void RemoveScaffoldOption(ScaffoldOption option)
     {
+        if (Status != ScaffoldTaskStatus.Ready)
+        {
+            //TODO: Refactor string to a constant
+            throw new DomainException("Cannot remove scaffold options to a scaffold task that is not in the created state.");
+        }
+
         _options.Remove(option);
 
         var evt = new ScaffoldOptionAddedEvent(this, option);

@@ -16,6 +16,6 @@ public sealed class GetScaffoldTaskByIdCommandHandler(IScaffoldService ScaffoldS
     /// <returns>A collection of domain entities within the specified date range.</returns>
     public async Task<ScaffoldTask?> Handle(GetScaffoldTaskByIdCommand command, CancellationToken ct = default)
     {
-        return await _ScaffoldService.GetScaffoldTaskByIdAsync(command.Id, ct);
+        return await _ScaffoldService.GetScaffoldTaskByIdAsync(command.ScaffoldTaskId, ct);
     }
 }

@@ -1,32 +1,25 @@
 /// <summary>
 /// Initializes a new instance of the <see cref="UpdateScaffoldOptionCommand"/> class.
 /// </summary>
-/// <param name="capabilityIdentifier">The capability identifier.</param>
-/// <param name="label">The label.</param>
+/// <param name="key">The key.</param>
 /// <param name="value">The value.</param>
-/// <param name="entityId">The entity identifier.</param>
+/// <param name="scaffoldTaskId">The entity identifier.</param>
 namespace Heimdall.Midgard.Valkyrie.Application.Commands;
 
 [method: JsonConstructor]
-public sealed class UpdateScaffoldOptionCommand(string capabilityIdentifier, string label, string value, Guid entityId) : ICommand<ScaffoldOption>
+public sealed class UpdateScaffoldOptionCommand(Guid scaffoldTaskId, string key, string value) : ICommand<ScaffoldOption>
 {
-    /// <summary>
-    /// Gets or sets the capability identifier.
-    /// </summary>
-    [JsonPropertyName("capabilityIdentifier")]
-    public string CapabilityIdentifier { get; init; } = capabilityIdentifier;
-
     /// <summary>
     /// Gets or sets the entity ID.
     /// </summary>
-    [JsonPropertyName("entityId")]
-    public Guid EntityId { get; init; } = entityId;
+    [JsonPropertyName("scaffoldTaskId")]
+    public Guid ScaffoldTaskId { get; init; } = scaffoldTaskId;
 
     /// <summary>
-    /// Gets or sets the label.
+    /// Gets or sets the key.
     /// </summary>
-    [JsonPropertyName("label")]
-    public string Label { get; init; } = label;
+    [JsonPropertyName("key")]
+    public string Key { get; init; } = key;
 
     /// <summary>
     /// Gets or sets the value.

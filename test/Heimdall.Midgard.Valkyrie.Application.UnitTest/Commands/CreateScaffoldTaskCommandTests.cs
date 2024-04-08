@@ -14,7 +14,9 @@ public class CreateScaffoldTaskCommandTests
         var hashCode = sut.GetHashCode();
 
         //Assert
-        Assert.NotNull(sut);
+        Assert.NotNull(sut);        
+        Assert.Equal(account, sut.Account);        
+        Assert.Equal(options, sut.Options);
         Assert.Equal(hashCode, sut.GetHashCode());
     }
 
@@ -22,9 +24,7 @@ public class CreateScaffoldTaskCommandTests
     public void CanBeSerialized()
     {
         //Arrange
-        var account = new AccountInfo("default", "default");
-        var options = new List<ScaffoldOption>();
-        var sut = new CreateScaffoldTaskCommand(account, options);
+        var sut = new CreateScaffoldTaskCommand(new AccountInfo("default", "default"), []);
 
         //Act
         var result = JsonSerializer.Serialize(sut);

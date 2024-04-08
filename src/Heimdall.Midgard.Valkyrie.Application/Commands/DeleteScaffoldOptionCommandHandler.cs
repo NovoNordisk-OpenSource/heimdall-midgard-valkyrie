@@ -15,6 +15,6 @@ public sealed class DeleteScaffoldOptionCommandHandler(IScaffoldService Scaffold
     /// <returns>A task representing the asynchronous operation.</returns>
     public async Task<bool> Handle(DeleteScaffoldOptionCommand command, CancellationToken cancellationToken = default)
     {
-        return await _ScaffoldService.DeleteScaffoldOptionAsync(command.EntityId, command.Key, cancellationToken);
+        return await _ScaffoldService.DeleteScaffoldOptionAsync(command.ScaffoldTaskId, command.Key, cancellationToken);
     }
 }

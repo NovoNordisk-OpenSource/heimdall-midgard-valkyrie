@@ -20,7 +20,7 @@ public class IAggregateRootToICommandConverter : ITypeConverter<IAggregateRoot, 
                 }
                 else
                 {
-                    destination = new UpdateScaffoldTaskCommand(entity);
+                    destination = new UpdateScaffoldTaskCommand(entity.Id, entity.Account, entity.Options);
                 }
 
                 break;

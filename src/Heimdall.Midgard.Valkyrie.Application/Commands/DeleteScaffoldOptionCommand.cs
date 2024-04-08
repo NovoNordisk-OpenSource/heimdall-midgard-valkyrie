@@ -7,17 +7,17 @@ namespace Heimdall.Midgard.Valkyrie.Application.Commands;
 /// <param name="label">The label.</param>
 /// <param name="capabilityIdentifier">The capability identifier.</param>
 [method: JsonConstructor]
-public sealed class DeleteScaffoldOptionCommand(Guid entityId, string key) : ICommand<bool>
+public sealed class DeleteScaffoldOptionCommand(Guid scaffoldTaskId, string key) : ICommand<bool>
 {
     /// <summary>
-    /// Gets or sets the label of the scaffold option.
+    /// Gets or sets the key of the scaffold option.
     /// </summary>
     [JsonPropertyName("key")]
     public string Key { get; init; } = key;
 
     /// <summary>
-    /// Gets or sets the ID of the scaffold option.
+    /// Gets or sets the ID of the scaffold task.
     /// </summary>
-    [JsonPropertyName("entityId")]
-    public Guid EntityId { get; init; } = entityId;
+    [JsonPropertyName("scaffoldTaskId")]
+    public Guid ScaffoldTaskId { get; init; } = scaffoldTaskId;
 }
