@@ -6,7 +6,7 @@ namespace Heimdall.Midgard.Valkyrie.Application.Commands;
 /// <remarks>
 ///     Initializes a new instance of the <see cref="DeleteScaffoldTaskCommand" /> class.
 /// </remarks>
-/// <param name="entityId">The ID of the entity to be deleted.</param>
+/// <param name="scaffoldTaskId">The ID of the entity to be deleted.</param>
 [method: JsonConstructor]
 public sealed class DeleteScaffoldTaskCommand(Guid scaffoldTaskId) : ICommand<bool>
 {

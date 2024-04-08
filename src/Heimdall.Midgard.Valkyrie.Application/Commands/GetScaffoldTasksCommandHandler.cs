@@ -3,9 +3,9 @@ namespace Heimdall.Midgard.Valkyrie.Application.Commands;
 /// <summary>
 ///     Command handler for retrieving domain entities.
 /// </summary>
-public sealed class GetScaffoldTasksCommandHandler(IScaffoldService ScaffoldService) : ICommandHandler<GetScaffoldTasksCommand, IEnumerable<ScaffoldTask>>
+public sealed class GetScaffoldTasksCommandHandler(IScaffoldService scaffoldService) : ICommandHandler<GetScaffoldTasksCommand, IEnumerable<ScaffoldTask>>
 {
-    private readonly IScaffoldService _ScaffoldService = ScaffoldService ?? throw new ArgumentNullException(nameof(ScaffoldService));
+    private readonly IScaffoldService _scaffoldService = scaffoldService ?? throw new ArgumentNullException(nameof(scaffoldService));
 
     /// <summary>
     ///     Handles the GetDomainEntitiesCommand by retrieving domain entities asynchronously.
@@ -15,6 +15,6 @@ public sealed class GetScaffoldTasksCommandHandler(IScaffoldService ScaffoldServ
     /// <returns>A collection of domain entities.</returns>
     public async Task<IEnumerable<ScaffoldTask>> Handle(GetScaffoldTasksCommand command, CancellationToken ct = default)
     {
-        return await _ScaffoldService.GetScaffoldTasksAsync(ct);
+        return await _scaffoldService.GetScaffoldTasksAsync(ct);
     }
 }

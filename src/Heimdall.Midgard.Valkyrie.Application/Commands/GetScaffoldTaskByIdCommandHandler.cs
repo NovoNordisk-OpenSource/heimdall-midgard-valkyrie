@@ -3,9 +3,9 @@ namespace Heimdall.Midgard.Valkyrie.Application.Commands;
 /// <summary>
 ///     Command handler for retrieving scaffold tasks by id.
 /// </summary>
-public sealed class GetScaffoldTaskByIdCommandHandler(IScaffoldService ScaffoldService) : ICommandHandler<GetScaffoldTaskByIdCommand, ScaffoldTask?>
+public sealed class GetScaffoldTaskByIdCommandHandler(IScaffoldService scaffoldService) : ICommandHandler<GetScaffoldTaskByIdCommand, ScaffoldTask?>
 {
-    private readonly IScaffoldService _ScaffoldService = ScaffoldService ?? throw new ArgumentNullException(nameof(ScaffoldService));
+    private readonly IScaffoldService _scaffoldService = scaffoldService ?? throw new ArgumentNullException(nameof(scaffoldService));
 
     /// <summary>
     ///     Handles the GetScaffoldTaskByDateRangeCommand by calling the domain service to retrieve domain entities within the
@@ -16,6 +16,6 @@ public sealed class GetScaffoldTaskByIdCommandHandler(IScaffoldService ScaffoldS
     /// <returns>A collection of domain entities within the specified date range.</returns>
     public async Task<ScaffoldTask?> Handle(GetScaffoldTaskByIdCommand command, CancellationToken ct = default)
     {
-        return await _ScaffoldService.GetScaffoldTaskByIdAsync(command.ScaffoldTaskId, ct);
+        return await _scaffoldService.GetScaffoldTaskByIdAsync(command.ScaffoldTaskId, ct);
     }
 }

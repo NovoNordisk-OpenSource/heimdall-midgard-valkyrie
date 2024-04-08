@@ -8,11 +8,11 @@ public sealed class ScaffoldOptionAddedEvent : ScaffoldTaskEvent
     /// <summary>
     ///     Initializes a new instance of the <see cref="ScaffoldOptionAddedEvent" /> class.
     /// </summary>
-    /// <param name="entity">The scaffold task to which the object was added.</param>
+    /// <param name="scaffoldTask">The scaffold task to which the object was added.</param>
     /// <param name="option">The scaffold option that was added.</param>
-    public ScaffoldOptionAddedEvent(ScaffoldTask entity, ScaffoldOption option)
+    public ScaffoldOptionAddedEvent(ScaffoldTask scaffoldTask, ScaffoldOption option)
     {
-        Entity = entity;
+        ScaffoldTask = scaffoldTask;
         Option = option;
     }
 

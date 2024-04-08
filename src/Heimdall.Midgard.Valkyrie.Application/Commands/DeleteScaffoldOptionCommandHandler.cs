@@ -3,9 +3,9 @@ namespace Heimdall.Midgard.Valkyrie.Application.Commands;
 /// <summary>
 /// Represents a command handler for deleting a scaffold option.
 /// </summary>
-public sealed class DeleteScaffoldOptionCommandHandler(IScaffoldService ScaffoldService) : ICommandHandler<DeleteScaffoldOptionCommand, bool>
+public sealed class DeleteScaffoldOptionCommandHandler(IScaffoldService scaffoldService) : ICommandHandler<DeleteScaffoldOptionCommand, bool>
 {
-    private readonly IScaffoldService _ScaffoldService = ScaffoldService ?? throw new ArgumentNullException(nameof(ScaffoldService));
+    private readonly IScaffoldService _scaffoldService = scaffoldService ?? throw new ArgumentNullException(nameof(scaffoldService));
 
     /// <summary>
     /// Handles the delete scaffold option command.
@@ -15,6 +15,6 @@ public sealed class DeleteScaffoldOptionCommandHandler(IScaffoldService Scaffold
     /// <returns>A task representing the asynchronous operation.</returns>
     public async Task<bool> Handle(DeleteScaffoldOptionCommand command, CancellationToken cancellationToken = default)
     {
-        return await _ScaffoldService.DeleteScaffoldOptionAsync(command.ScaffoldTaskId, command.Key, cancellationToken);
+        return await _scaffoldService.DeleteScaffoldOptionAsync(command.ScaffoldTaskId, command.Key, cancellationToken);
     }
 }

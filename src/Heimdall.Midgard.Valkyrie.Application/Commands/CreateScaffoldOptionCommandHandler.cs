@@ -3,9 +3,9 @@ namespace Heimdall.Midgard.Valkyrie.Application.Commands;
 /// <summary>
 /// Represents a command handler for creating a scaffold option.
 /// </summary>
-public sealed class CreateScaffoldOptionCommandHandler(IScaffoldService ScaffoldService) : ICommandHandler<CreateScaffoldOptionCommand, ScaffoldOption>
+public sealed class CreateScaffoldOptionCommandHandler(IScaffoldService scaffoldService) : ICommandHandler<CreateScaffoldOptionCommand, ScaffoldOption>
 {
-    private readonly IScaffoldService _ScaffoldService = ScaffoldService ?? throw new ArgumentNullException(nameof(ScaffoldService));
+    private readonly IScaffoldService _scaffoldService = scaffoldService ?? throw new ArgumentNullException(nameof(scaffoldService));
 
     /// <summary>
     /// Handles the create scaffold option command.
@@ -15,6 +15,6 @@ public sealed class CreateScaffoldOptionCommandHandler(IScaffoldService Scaffold
     /// <returns>The created scaffold option.</returns>
     public async Task<ScaffoldOption> Handle(CreateScaffoldOptionCommand command, CancellationToken cancellationToken = default)
     {
-        return await _ScaffoldService.AddOrUpdateScaffoldOptionAsync(command.ScaffoldTaskId, command.Key, command.Value, cancellationToken);
+        return await _scaffoldService.AddOrUpdateScaffoldOptionAsync(command.ScaffoldTaskId, command.Key, command.Value, cancellationToken);
     }
 }

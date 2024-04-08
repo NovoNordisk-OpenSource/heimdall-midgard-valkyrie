@@ -13,7 +13,7 @@ public class ScaffoldOptionRemovedEventTests
 
         //Assert
         Assert.NotNull(sut);
-        Assert.True(sut.Entity == null);
+        Assert.Null(sut.ScaffoldTask);
     }
 
     [Fact]
@@ -28,9 +28,9 @@ public class ScaffoldOptionRemovedEventTests
         var anotherEvent = new ScaffoldOptionRemovedEvent(scaffoldTask, scaffoldOption);
 
         //Assert
-        Assert.True(sut.Entity == scaffoldTask);
+        Assert.True(sut.ScaffoldTask == scaffoldTask);
         Assert.True(sut.Option == scaffoldOption);
-        Assert.True(anotherEvent.Entity == scaffoldTask);
+        Assert.True(anotherEvent.ScaffoldTask == scaffoldTask);
         Assert.True(anotherEvent.Option == scaffoldOption);
         Assert.False(sut.Equals(anotherEvent));
     }

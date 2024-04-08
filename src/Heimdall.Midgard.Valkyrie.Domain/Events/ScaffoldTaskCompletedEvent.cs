@@ -8,9 +8,9 @@ public sealed class ScaffoldTaskCompletedEvent : ScaffoldTaskEvent
     /// <summary>
     ///     Initializes a new instance of the <see cref="ScaffoldTaskCompletedEvent" /> class.
     /// </summary>
-    /// <param name="entity">The scaffold task that was completed.</param>
-    public ScaffoldTaskCompletedEvent(ScaffoldTask entity)
+    /// <param name="scaffoldTask">The scaffold task that was completed.</param>
+    public ScaffoldTaskCompletedEvent(ScaffoldTask scaffoldTask)
     {
-        Entity = entity;
+        ScaffoldTask = scaffoldTask;
     }
 }

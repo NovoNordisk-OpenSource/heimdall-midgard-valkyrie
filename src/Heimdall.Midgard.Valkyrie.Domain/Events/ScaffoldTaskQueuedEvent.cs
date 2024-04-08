@@ -8,9 +8,9 @@ public sealed class ScaffoldTaskQueuedEvent : ScaffoldTaskEvent
     /// <summary>
     ///     Initializes a new instance of the <see cref="ScaffoldTaskCreatedEvent" /> class.
     /// </summary>
-    /// <param name="entity">The scaffold task that was queued.</param>
-    public ScaffoldTaskQueuedEvent(ScaffoldTask entity)
+    /// <param name="scaffoldTask">The scaffold task that was queued.</param>
+    public ScaffoldTaskQueuedEvent(ScaffoldTask scaffoldTask)
     {
-        Entity = entity;
+        ScaffoldTask = scaffoldTask;
     }
 }

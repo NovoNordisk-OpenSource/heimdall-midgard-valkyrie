@@ -10,7 +10,7 @@ namespace Heimdall.Midgard.Valkyrie.Application.Commands;
 /// <exception cref="ArgumentNullException">Thrown when the ScaffoldService is null.</exception>
 public sealed class UpdateScaffoldTaskCommandHandler(IScaffoldService scaffoldService) : ICommandHandler<UpdateScaffoldTaskCommand, ScaffoldTask?>, ICommandHandler<UpdateScaffoldTaskCommand, IAggregateRoot?>
 {
-    private readonly IScaffoldService _scaffoldService = scaffoldService ?? throw new ArgumentNullException(nameof(ScaffoldService));
+    private readonly IScaffoldService _scaffoldService = scaffoldService ?? throw new ArgumentNullException(nameof(scaffoldService));
 
     /// <summary>
     ///     Handles the update scaffold task command.

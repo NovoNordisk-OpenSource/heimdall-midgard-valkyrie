@@ -6,7 +6,7 @@ namespace Heimdall.Midgard.Valkyrie.Application.Commands;
 /// <remarks>
 ///     Initializes a new instance of the <see cref="GetScaffoldTaskByIdCommand" /> class.
 /// </remarks>
-/// <param name="id">The if of the scaffold task.</param>
+/// <param name="scaffoldTaskId">The id of the scaffold task.</param>
 [method: JsonConstructor]
 public sealed class GetScaffoldTaskByIdCommand(Guid scaffoldTaskId) : ICommand<ScaffoldTask?>
 {

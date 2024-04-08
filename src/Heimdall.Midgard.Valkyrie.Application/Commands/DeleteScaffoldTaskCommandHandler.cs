@@ -6,11 +6,11 @@ namespace Heimdall.Midgard.Valkyrie.Application.Commands;
 /// <remarks>
 ///     Initializes a new instance of the <see cref="DeleteScaffoldTaskCommandHandler" /> class.
 /// </remarks>
-/// <param name="ScaffoldService">The domain service.</param>
+/// <param name="scaffoldService">The domain service.</param>
 /// <exception cref="ArgumentNullException">Thrown when the ScaffoldService is null.</exception>
-public sealed class DeleteScaffoldTaskCommandHandler(IScaffoldService ScaffoldService) : ICommandHandler<DeleteScaffoldTaskCommand, bool>
+public sealed class DeleteScaffoldTaskCommandHandler(IScaffoldService scaffoldService) : ICommandHandler<DeleteScaffoldTaskCommand, bool>
 {
-    private readonly IScaffoldService _ScaffoldService = ScaffoldService ?? throw new ArgumentNullException(nameof(ScaffoldService));
+    private readonly IScaffoldService _scaffoldService = scaffoldService ?? throw new ArgumentNullException(nameof(scaffoldService));
 
     /// <summary>
     ///     Handles the delete scaffold task command.
@@ -23,6 +23,6 @@ public sealed class DeleteScaffoldTaskCommandHandler(IScaffoldService ScaffoldSe
     /// </returns>
     public async Task<bool> Handle(DeleteScaffoldTaskCommand command, CancellationToken ct = default)
     {
-        return await _ScaffoldService.DeleteScaffoldTaskAsync(command.ScaffoldTaskId, ct);
+        return await _scaffoldService.DeleteScaffoldTaskAsync(command.ScaffoldTaskId, ct);
     }
 }

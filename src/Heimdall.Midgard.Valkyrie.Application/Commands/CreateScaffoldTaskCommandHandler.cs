@@ -6,11 +6,11 @@ namespace Heimdall.Midgard.Valkyrie.Application.Commands;
 /// <remarks>
 ///     Initializes a new instance of the <see cref="CreateScaffoldTaskCommandHandler" /> class.
 /// </remarks>
-/// <param name="ScaffoldService">The domain service.</param>
+/// <param name="scaffoldService">The domain service.</param>
 /// <exception cref="ArgumentNullException">Thrown when the ScaffoldService is null.</exception>
-public sealed class CreateScaffoldTaskCommandHandler(IScaffoldService ScaffoldService) : ICommandHandler<CreateScaffoldTaskCommand, ScaffoldTask>, ICommandHandler<CreateScaffoldTaskCommand, IAggregateRoot>
+public sealed class CreateScaffoldTaskCommandHandler(IScaffoldService scaffoldService) : ICommandHandler<CreateScaffoldTaskCommand, ScaffoldTask>, ICommandHandler<CreateScaffoldTaskCommand, IAggregateRoot>
 {
-    private readonly IScaffoldService _ScaffoldService = ScaffoldService ?? throw new ArgumentNullException(nameof(ScaffoldService));
+    private readonly IScaffoldService _scaffoldService = scaffoldService ?? throw new ArgumentNullException(nameof(scaffoldService));
 
     /// <summary>
     ///     Handles the create scaffold task command.
@@ -20,7 +20,7 @@ public sealed class CreateScaffoldTaskCommandHandler(IScaffoldService ScaffoldSe
     /// <returns>The created scaffold task.</returns>
     public async Task<ScaffoldTask> Handle(CreateScaffoldTaskCommand command, CancellationToken ct = default)
     {
-        return await _ScaffoldService.AddScaffoldTaskAsync(command.Account, command.Options, ct);
+        return await _scaffoldService.AddScaffoldTaskAsync(command.Account, command.Options, ct);
     }
 
     async Task<IAggregateRoot> IRequestHandler<CreateScaffoldTaskCommand, IAggregateRoot>.Handle(CreateScaffoldTaskCommand request, CancellationToken ct)
