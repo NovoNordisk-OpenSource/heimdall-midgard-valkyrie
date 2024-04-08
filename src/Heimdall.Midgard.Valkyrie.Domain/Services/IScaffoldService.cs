@@ -37,7 +37,7 @@ public interface IScaffoldService : IService
     /// <param name="options">The collection of scaffold options to be associated with the scaffold task.</param>
     /// <param name="ct">The cancellation token.</param>
     /// <returns>A task that represents the asynchronous operation. The task result contains the added scaffold task.</returns>
-    Task<ScaffoldTask> AddScaffoldTaskAsync(AccountInfo account, IEnumerable<ScaffoldOption>? options, CancellationToken ct = default);
+    Task<ScaffoldTask> AddScaffoldTaskAsync(AccountInfo account, IEnumerable<ScaffoldOption>? options = default, CancellationToken ct = default);
 
     /// <summary>
     ///     Updates an existing scaffold task.

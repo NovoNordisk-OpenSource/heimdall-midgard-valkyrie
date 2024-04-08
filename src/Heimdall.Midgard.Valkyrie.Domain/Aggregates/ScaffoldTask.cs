@@ -73,10 +73,6 @@ public sealed class ScaffoldTask : AggregateRoot<Guid>
     public ScaffoldTask(AccountInfo accountInfo) : this()
     {
         Account = accountInfo;
-
-        var evt = new ScaffoldTaskCreatedEvent(this);
-
-        AddDomainEvent(evt);
     }
 
     /// <summary>

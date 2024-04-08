@@ -49,7 +49,7 @@ public sealed class ScaffoldService(IScaffoldTaskRepository scaffoldTaskReposito
     /// <param name="options">The collection of scaffold options (optional).</param>
     /// <param name="ct">The cancellation token.</param>
     /// <returns>The added scaffold task.</returns>
-    public async Task<ScaffoldTask> AddScaffoldTaskAsync(AccountInfo account, IEnumerable<ScaffoldOption>? options, CancellationToken ct = default)
+    public async Task<ScaffoldTask> AddScaffoldTaskAsync(AccountInfo account, IEnumerable<ScaffoldOption>? options = default, CancellationToken ct = default)
     {
         var entity = new ScaffoldTask(account);
 
