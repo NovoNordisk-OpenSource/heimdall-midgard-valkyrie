@@ -5,6 +5,24 @@ public class DefaultProfileTests(ServiceProviderFixture fixture) : IClassFixture
     private readonly ServiceProviderFixture _fixture = fixture;
 
     [Fact]
+    public void CanMapIAggregateRoot2ICommand()
+    {
+        //Arrange
+        var sut = new DefaultProfile();
+        var mapper = new MapperConfiguration(cfg =>
+        {
+            cfg.AddProfile(sut);
+        }).CreateMapper();
+
+        //Act
+        var result = mapper.Map<IAggregateRoot, ICommand<IAggregateRoot>>(new ScaffoldTask(new AccountInfo("test", "test")));
+
+        //Assert
+        Assert.NotNull(result);
+        Assert.True(result is CreateScaffoldTaskCommand);
+    }
+
+    [Fact]
     public async void CanMapIIntegrationEvent2ICommand()
     {
         //Arrange
