@@ -16,7 +16,7 @@ public sealed class DefaultProfile : Profile
         CreateMap<IIntegrationEvent, IAggregateRoot>()
         .ConvertUsing<IIntegrationEventToIAggregateRootConverter>();
 
-        CreateMap<IIntegrationEvent, ScaffoldTask>()
+        CreateMap<IIntegrationEvent, ValueTask<ScaffoldTask?>>()
         .ConvertUsing<IIntegrationEventToScaffoldTaskConverter>();
     }
 }

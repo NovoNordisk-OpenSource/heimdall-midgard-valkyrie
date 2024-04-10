@@ -1,10 +1,10 @@
 ﻿namespace Heimdall.Midgard.Valkyrie.Application.Mapping.Converters.Events;
 
-public class IIntegrationEventToScaffoldTaskConverter(IMapper mapper, IScaffoldService ScaffoldService) : ITypeConverter<IIntegrationEvent, ScaffoldTask>
+public class IIntegrationEventToScaffoldTaskConverter(IMapper mapper, IScaffoldService scaffoldService) : ITypeConverter<IIntegrationEvent, ValueTask<ScaffoldTask?>>
 {
     public readonly IMapper _mapper = mapper;
 
-    public readonly IScaffoldService _ScaffoldService = ScaffoldService ?? throw new ArgumentNullException(nameof(ScaffoldService));
+    public readonly IScaffoldService _scaffoldService = scaffoldService ?? throw new ArgumentNullException(nameof(scaffoldService));
 
     /// <summary>
     /// Converts an externally mutated scaffold task integration event to a scaffold task.
@@ -13,7 +13,7 @@ public class IIntegrationEventToScaffoldTaskConverter(IMapper mapper, IScaffoldS
     /// <param name="destination">The destination scaffold task.</param>
     /// <param name="context">The resolution context.</param>
     /// <returns>The converted scaffold task.</returns>
-    public ScaffoldTask Convert(IIntegrationEvent source, ScaffoldTask destination, ResolutionContext context)
+    public async ValueTask<ScaffoldTask?> Convert(IIntegrationEvent source, ValueTask<ScaffoldTask?> destination, ResolutionContext context)
     {
         // Simplistic conversion logic
         JsonElement? payload;
@@ -40,15 +40,9 @@ public class IIntegrationEventToScaffoldTaskConverter(IMapper mapper, IScaffoldS
 
         if(Guid.TryParse(payload?.GetProperty("id").GetString(), out var entityId))
         {
-            var getEntityTask = _ScaffoldService.GetScaffoldTaskByIdAsync(entityId);
-
-            getEntityTask.Wait();
-
-            destination = getEntityTask.Result ?? throw new ApplicationFacadeException($"Scaffold task with id {entityId} not found.");
-
-            // TODO: Map the integration event payload (JsonObject) to the scaffold task (ScaffoldTask)
+            destination = ValueTask.FromResult(await _scaffoldService.GetScaffoldTaskByIdAsync(entityId));
         }
 
-        return destination;
+        return await destination;
     }
 }

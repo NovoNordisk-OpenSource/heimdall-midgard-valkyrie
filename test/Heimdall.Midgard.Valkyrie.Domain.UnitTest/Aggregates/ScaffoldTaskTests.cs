@@ -8,7 +8,7 @@ public class ScaffoldTaskTests
         var sut = new ScaffoldTask(new AccountInfo("default", "default"));
 
         Assert.NotNull(sut);
-        Assert.True(sut.DomainEvents.Count == 1);
+        Assert.Single(sut.DomainEvents);
         Assert.Contains(sut.DomainEvents, i => i is ScaffoldTaskCreatedEvent);
     }
 
@@ -23,6 +23,6 @@ public class ScaffoldTaskTests
         var validationResults = sut.Validate(validationCtx);
 
         //Assert
-        Assert.True(!validationResults.Any());
+        Assert.False(validationResults.Any());
     }
 }
