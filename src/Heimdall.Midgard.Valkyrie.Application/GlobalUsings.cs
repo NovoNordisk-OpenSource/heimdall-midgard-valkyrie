@@ -10,7 +10,6 @@ global using Heimdall.Midgard.Valkyrie.Domain.Events;
 global using Heimdall.Midgard.Valkyrie.Domain.Services;
 global using Heimdall.Midgard.Valkyrie.Domain.ValueObjects;
 global using Heimdall.Midgard.Valkyrie.Application.Commands;
-global using Heimdall.Midgard.Valkyrie.Application.Events.Domain;
 global using Heimdall.Midgard.Valkyrie.Application.Events.Integration;
 global using Heimdall.Midgard.Valkyrie.Application.Mapping.Converters.Events;
 global using Heimdall.Midgard.Valkyrie.Application.Mapping.Converters.Commands;

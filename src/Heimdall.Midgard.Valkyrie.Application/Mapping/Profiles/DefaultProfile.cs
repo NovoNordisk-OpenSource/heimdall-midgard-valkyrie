@@ -10,9 +10,6 @@ public sealed class DefaultProfile : Profile
         CreateMap<IAggregateRoot, ICommand<IAggregateRoot>>()
         .ConvertUsing<IAggregateRootToICommandConverter>();
 
-        CreateMap<IIntegrationEvent, ICommand<IAggregateRoot>>()
-        .ConvertUsing<IIntegrationEventToICommandConverter>();
-
         CreateMap<IIntegrationEvent, IAggregateRoot>()
         .ConvertUsing<IIntegrationEventToIAggregateRootConverter>();
 

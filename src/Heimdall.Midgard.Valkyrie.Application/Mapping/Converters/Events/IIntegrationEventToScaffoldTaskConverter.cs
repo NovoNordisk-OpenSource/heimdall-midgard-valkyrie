@@ -38,7 +38,7 @@ public class IIntegrationEventToScaffoldTaskConverter(IMapper mapper, IScaffoldS
             }
         }
 
-        if(Guid.TryParse(payload?.GetProperty("id").GetString(), out var entityId))
+        if(Guid.TryParse(payload?.GetProperty("scaffoldTaskId").GetString(), out var entityId))
         {
             destination = ValueTask.FromResult(await _scaffoldService.GetScaffoldTaskByIdAsync(entityId));
         }
