@@ -132,16 +132,13 @@ public class ScaffoldController(ILogger<ScaffoldController> logger, IApplication
     /// <param name="ct">The cancellation token.</param>
     /// <returns>A matched ScaffoldTask or null.</returns>
     [HttpPost]
-    public async Task<ScaffoldTask> AddScaffoldTaskAsync(AccountInfo accountInfo, IEnumerable<ScaffoldOption> options, CancellationToken ct = default)
+    public async Task<ScaffoldTask> AddScaffoldTaskAsync([FromBody] CreateScaffoldTaskCommand command, CancellationToken ct = default)
     {
         // Initialize custom activity
         using var activity = Activities.ApplicationActivitySource.StartActivity(string.Format("{0}.{1}", MethodBase.GetCurrentMethod()!.DeclaringType!.FullName, MethodBase.GetCurrentMethod()!.Name));
 
         // Increment custom metric
         _requestCounter.Add(1);
-
-        //Initialize command to create scaffold task
-        var command = new CreateScaffoldTaskCommand(accountInfo, options);
 
         // Dispatch command to application facade
         var entity = await _facade.Execute(command, ct);
@@ -163,16 +160,13 @@ public class ScaffoldController(ILogger<ScaffoldController> logger, IApplication
     /// <param name="ct">The cancellation token.</param>
     /// <returns>A the updated Scaffold Task.</returns>
     [HttpPut("{id}")]
-    public async Task<ScaffoldTask> UpdateScaffoldTaskAsync(Guid id, [FromBody] AccountInfo account, [FromBody] IEnumerable<ScaffoldOption>? options = default, CancellationToken ct = default)
+    public async Task<ScaffoldTask> UpdateScaffoldTaskAsync([FromBody] UpdateScaffoldTaskCommand command, CancellationToken ct = default)
     {
         // Initialize custom activity
         using var activity = Activities.ApplicationActivitySource.StartActivity(string.Format("{0}.{1}", MethodBase.GetCurrentMethod()!.DeclaringType!.FullName, MethodBase.GetCurrentMethod()!.Name));
 
         // Increment custom metric
         _requestCounter.Add(1);
-
-        //Initialize command to update scaffold task
-        var command = new UpdateScaffoldTaskCommand(id, account, options);
 
         // Dispatch command to application facade
         var entity = await _facade.Execute(command, ct);
