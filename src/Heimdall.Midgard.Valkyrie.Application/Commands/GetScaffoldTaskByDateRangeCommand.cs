@@ -9,7 +9,7 @@ namespace Heimdall.Midgard.Valkyrie.Application.Commands;
 /// <param name="startDate">The start date of the date range.</param>
 /// <param name="endDate">The end date of the date range. Can be null if only the start date is considered.</param>
 [method: JsonConstructor]
-public sealed class GetScaffoldTaskByDateRangeCommand(DateTime startDate, DateTime? endDate) : ICommand<IEnumerable<ScaffoldTask>>
+public sealed class GetScaffoldTaskByDateRangeCommand(DateTime startDate, DateTime? endDate = default) : ICommand<IEnumerable<ScaffoldTask>>
 {
     /// <summary>
     ///     Gets or sets the start date of the date range.
