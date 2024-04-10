@@ -26,7 +26,7 @@ services:
       dockerfile: src/Heimdall.Midgard.Valkyrie.Host.Worker/Dockerfile
     environment:
       GITHUB_TOKEN: ${GITHUB_TOKEN}
-      ASPNETCORE_ENVIRONMENT: "Development"
+      DOTNET_ENVIRONMENT: "Development"
     networks:
       - heimdall
     depends_on:

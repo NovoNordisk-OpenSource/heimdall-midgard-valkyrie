@@ -1,4 +1,6 @@
 // Create application builder
+using Saunter.AsyncApiSchema.v2;
+
 var builder = WebApplication.CreateBuilder(args);
 
 // Fetch OTLP exporter options from configuration.
@@ -55,6 +57,29 @@ builder.Logging.AddOpenTelemetry(logging =>
     logging.SetResourceBuilder(resourceBuilder).ConfigureLoggerExporter(microsoftIdentityOptions, otlpExporterOptions);
 });
 
+// Add AsyncAPI documentation
+builder.Services.AddAsyncApiSchemaGeneration(options =>
+{
+    options.AssemblyMarkerTypes = [typeof(Program)];
+    options.Middleware.Route = "/asyncapi/asyncapi.json";
+    options.Middleware.UiBaseRoute = "/asyncapi/ui/";
+    options.Middleware.UiTitle = "Midgard Event API Documentation";
+    options.AsyncApi = new AsyncApiDocument
+    {
+        Info = new Info("Midgard Event API", "1.0.0")
+        {
+            License = new License("Apache 2.0")
+            {
+                Url = "https://www.apache.org/licenses/LICENSE-2.0"
+            }
+        },
+        Servers =
+        {
+            { "kafka", new Server("kafka:9092", "kafka") }
+        }
+    };
+});
+
 // Build application
 var app = builder.Build();
 
@@ -67,6 +92,9 @@ if (app.Environment.IsDevelopment())
         options.SwaggerEndpoint("/swagger/v1/swagger.json", "v1");
         options.RoutePrefix = string.Empty;
     });
+
+    app.MapAsyncApiDocuments();
+    app.MapAsyncApiUi();
 }
 
 // Use AzureKeyVault in production if KeyVaultName is set. 
