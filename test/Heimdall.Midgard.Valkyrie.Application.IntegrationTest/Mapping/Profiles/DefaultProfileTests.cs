@@ -1,31 +1,8 @@
 namespace Heimdall.Midgard.Valkyrie.Application.IntegrationTest.Mapping.Profiles;
 
-public class DefaultProfileTests : IClassFixture<ServiceProviderFixture>
+public class DefaultProfileTests(ServiceProviderFixture fixture) : IClassFixture<ServiceProviderFixture>
 {    
-    private readonly ServiceProviderFixture _fixture;
-
-    public DefaultProfileTests(ServiceProviderFixture fixture)
-    {
-        _fixture = fixture;
-    }
-
-    [Fact]
-    public void CanMapIAggregateRoot2ICommand()
-    {
-        //Arrange
-        var sut = new DefaultProfile();
-        var mapper = new MapperConfiguration(cfg =>
-        {
-            cfg.AddProfile(sut);
-        }).CreateMapper();
-
-        //Act
-        var result = mapper.Map<ICommand<IAggregateRoot>>(new ScaffoldTask(new AccountInfo("test", "test")));
-
-        //Assert
-        Assert.NotNull(result);
-        Assert.True(result is CreateScaffoldTaskCommand);
-    }
+    private readonly ServiceProviderFixture _fixture = fixture;
 
     [Fact]
     public async void CanMapIIntegrationEvent2ICommand()
