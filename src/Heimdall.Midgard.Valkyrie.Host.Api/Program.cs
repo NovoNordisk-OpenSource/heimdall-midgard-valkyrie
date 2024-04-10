@@ -81,20 +81,23 @@ builder.Services.AddAsyncApiSchemaGeneration(options =>
 // Build application
 var app = builder.Build();
 
-// Add swagger if development mode.
+// Add swagger 
+app.UseSwagger(options => {
+    options.RouteTemplate = "/discovery/{documentName}/openapi/schema.json";
+});
+
+// Add AsyncAPI documentation
+app.MapAsyncApiDocuments();
+
+// Add swagger & async UI if development mode.
 if (app.Environment.IsDevelopment())
 {
-    app.UseSwagger(options => {
-        options.RouteTemplate = "/discovery/{documentName}/openapi/schema.json";
-    });
-
     app.UseSwaggerUI(options =>
     {
         options.SwaggerEndpoint("/discovery/v1/openapi/schema.json", "v1");
         options.RoutePrefix = "discovery/v1/openapi";
     });
 
-    app.MapAsyncApiDocuments();
     app.MapAsyncApiUi();
 }
 
