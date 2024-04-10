@@ -147,8 +147,7 @@ public sealed class ScaffoldTask : AggregateRoot<Guid>
     {
         if (Status != ScaffoldTaskStatus.Ready)
         {
-            //TODO: Refactor string to a constant
-            throw new DomainException("Cannot add scaffold options to a scaffold task that is not in the Ready state.");
+            throw new DomainException($"Cannot add scaffold options to a scaffold task that is not in the {ScaffoldTaskStatus.Ready} state.");
         }
 
         _options.Add(option);
@@ -176,8 +175,7 @@ public sealed class ScaffoldTask : AggregateRoot<Guid>
     {
         if (Status != ScaffoldTaskStatus.Ready)
         {
-            //TODO: Refactor string to a constant
-            throw new DomainException("Cannot remove scaffold options to a scaffold task that is not in the created state.");
+            throw new DomainException($"Cannot add scaffold options to a scaffold task that is not in the {ScaffoldTaskStatus.Ready} state.");
         }
 
         _options.Remove(option);
