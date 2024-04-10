@@ -17,7 +17,7 @@ public class ScaffoldTaskCreatedIntegrationEventHandler(IProducer<Ignore, IInteg
     /// <param name="ct">The cancellation token.</param>
     /// <returns>A task representing the asynchronous operation.</returns> 
     [Channel($"publish/{nameof(ScaffoldTaskCreatedIntegrationEvent)}")]
-    [PublishOperation(typeof(ScaffoldTaskCreatedIntegrationEvent), Summary = "ScaffoldTask integration events.")]    
+    [PublishOperation(typeof(ScaffoldTaskCreatedIntegrationEvent), Summary = "Produces ScaffoldTask integration events for external consumption.")]
     public async Task Handle(ScaffoldTaskCreatedIntegrationEvent notification, CancellationToken ct = default)
     {
         using var activity = Activities.ApplicationActivitySource.StartActivity(string.Format("{0}.{1}",

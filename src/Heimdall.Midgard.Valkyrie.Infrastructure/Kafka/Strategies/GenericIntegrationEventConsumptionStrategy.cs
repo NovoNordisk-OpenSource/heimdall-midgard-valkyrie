@@ -8,6 +8,7 @@
 /// </remarks>
 /// <param name="mapper">The mapper used for object mapping.</param>
 /// <param name="applicationFacade">The application facade for executing commands.</param>
+[AsyncApi]
 public sealed class GenericIntegrationEventConsumptionStrategy(IMapper mapper, IApplicationFacade applicationFacade) : ConsumptionStrategy(mapper, applicationFacade)
 {
     /// <summary>
@@ -16,6 +17,8 @@ public sealed class GenericIntegrationEventConsumptionStrategy(IMapper mapper, I
     /// <param name="target">The Kafka message to apply the strategy to.</param>
     /// <param name="ct">The cancellation token.</param>
     /// <returns>A task representing the asynchronous operation.</returns>
+    [Channel($"subscribe/{nameof(IntegrationEvent)}")]
+    [SubscribeOperation(typeof(IntegrationEvent), Summary = "Subscribes to external integration events.")]
     public override async Task Apply(ConsumeResult<string, string> target, CancellationToken ct = default)
     {
         var payload = target.Message.Value;

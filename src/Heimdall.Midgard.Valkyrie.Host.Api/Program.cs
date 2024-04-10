@@ -59,8 +59,8 @@ builder.Logging.AddOpenTelemetry(logging =>
 builder.Services.AddAsyncApiSchemaGeneration(options =>
 {
     options.AssemblyMarkerTypes = [typeof(ScaffoldTaskCreatedIntegrationEventHandler)];
-    options.Middleware.Route = "/asyncapi/asyncapi.json";
-    options.Middleware.UiBaseRoute = "/asyncapi/ui/";
+    options.Middleware.Route = "/discovery/v1/asyncapi/schema.json";
+    options.Middleware.UiBaseRoute = "/discovery/v1/asyncapi/";
     options.Middleware.UiTitle = "Midgard Event API Documentation";
     options.AsyncApi = new AsyncApiDocument
     {
@@ -84,11 +84,14 @@ var app = builder.Build();
 // Add swagger if development mode.
 if (app.Environment.IsDevelopment())
 {
-    app.UseSwagger();
+    app.UseSwagger(options => {
+        options.RouteTemplate = "/discovery/{documentName}/openapi/schema.json";
+    });
+
     app.UseSwaggerUI(options =>
     {
-        options.SwaggerEndpoint("/swagger/v1/swagger.json", "v1");
-        options.RoutePrefix = string.Empty;
+        options.SwaggerEndpoint("/discovery/v1/openapi/schema.json", "v1");
+        options.RoutePrefix = "discovery/v1/openapi";
     });
 
     app.MapAsyncApiDocuments();
