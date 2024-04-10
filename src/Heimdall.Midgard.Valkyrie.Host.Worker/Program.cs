@@ -15,7 +15,9 @@ builder.Services.AddHostedService<InitializedWrapperService<KafkaConsumerService
 
 // Setup health checks
 builder.Services.AddSingleton<InitializedHealthCheck>();
-builder.Services.AddHealthChecks().AddCheck<InitializedHealthCheck>("Initialized", tags: ["readiness"]);
+builder.Services.AddHealthChecks()
+                .AddCheck<InitializedHealthCheck>("Initialized", tags: ["readiness"])
+                .AddDbContextCheck<ApplicationContext>("Database", tags: ["readiness"]);
 
 // Add OpenTelemetry dependencies
 builder.Services.AddOpenTelemetry()

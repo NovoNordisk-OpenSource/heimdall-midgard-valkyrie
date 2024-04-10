@@ -1,4 +1,6 @@
 // Create application builder
+using Heimdall.Midgard.Valkyrie.Infrastructure.EntityFramework;
+
 var builder = WebApplication.CreateBuilder(args);
 
 // Fetch OTLP exporter options from configuration.
@@ -16,7 +18,8 @@ builder.Services.AddAuthentication(JwtBearerDefaults.AuthenticationScheme)
     .AddInMemoryTokenCaches();
 builder.Services.AddControllers();
 builder.Services.AddEndpointsApiExplorer();
-builder.Services.AddHealthChecks();
+builder.Services.AddHealthChecks()
+                .AddDbContextCheck<ApplicationContext>(tags: ["readiness"]);
 builder.Services.AddSwaggerGen();
 
 // Add OpenTelemetry dependencies

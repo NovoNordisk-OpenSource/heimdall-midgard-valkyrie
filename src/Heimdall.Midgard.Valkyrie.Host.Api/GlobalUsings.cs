@@ -6,6 +6,7 @@ global using Heimdall.Midgard.Valkyrie.Application.Telemetry;
 global using Heimdall.Midgard.Valkyrie.Domain.Aggregates;
 global using Heimdall.Midgard.Valkyrie.Infrastructure;
 global using Heimdall.Midgard.Valkyrie.Infrastructure.OpenTelemetry;
+global using Heimdall.Midgard.Valkyrie.Infrastructure.EntityFramework;
 global using Microsoft.AspNetCore.Authentication.JwtBearer;
 global using Microsoft.AspNetCore.Mvc;
 global using Microsoft.AspNetCore.Diagnostics.HealthChecks;

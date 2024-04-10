@@ -6,6 +6,7 @@ global using Heimdall.Midgard.Valkyrie.Infrastructure;
 global using Heimdall.Midgard.Valkyrie.Infrastructure.HealthChecks;
 global using Heimdall.Midgard.Valkyrie.Infrastructure.OpenTelemetry;
 global using Heimdall.Midgard.Valkyrie.Host.Worker;
+global using Heimdall.Midgard.Valkyrie.Infrastructure.EntityFramework;
 global using Microsoft.Extensions.Configuration;
 global using Microsoft.Identity.Web;
 global using OpenTelemetry.Resources;
