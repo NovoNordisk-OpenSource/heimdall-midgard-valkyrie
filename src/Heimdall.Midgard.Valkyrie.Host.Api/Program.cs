@@ -1,6 +1,4 @@
 // Create application builder
-using Saunter.AsyncApiSchema.v2;
-
 var builder = WebApplication.CreateBuilder(args);
 
 // Fetch OTLP exporter options from configuration.
@@ -60,7 +58,7 @@ builder.Logging.AddOpenTelemetry(logging =>
 // Add AsyncAPI documentation
 builder.Services.AddAsyncApiSchemaGeneration(options =>
 {
-    options.AssemblyMarkerTypes = [typeof(Program)];
+    options.AssemblyMarkerTypes = [typeof(ScaffoldTaskCreatedIntegrationEventHandler)];
     options.Middleware.Route = "/asyncapi/asyncapi.json";
     options.Middleware.UiBaseRoute = "/asyncapi/ui/";
     options.Middleware.UiTitle = "Midgard Event API Documentation";

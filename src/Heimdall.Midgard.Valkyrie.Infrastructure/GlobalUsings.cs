@@ -39,6 +39,7 @@ global using Metrics = Heimdall.Midgard.Valkyrie.Application.Telemetry.Metrics;
 global using OpenTelemetry.Trace;
 global using OpenTelemetry.Metrics;
 global using OpenTelemetry.Logs;
+global using Saunter.Attributes;
 global using System.ComponentModel.DataAnnotations;
 global using System.Diagnostics.Metrics;
 global using System.Linq.Expressions;

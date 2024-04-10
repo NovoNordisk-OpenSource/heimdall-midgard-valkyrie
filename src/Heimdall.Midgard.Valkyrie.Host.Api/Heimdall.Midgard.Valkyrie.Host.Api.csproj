@@ -16,7 +16,6 @@
         <PackageReference Include="Microsoft.Identity.Web.GraphServiceClient" Version="2.16.1" />
         <PackageReference Include="OpenTelemetry.Instrumentation.AspNetCore" Version="1.7.0" />
         <PackageReference Include="OpenTelemetry.Instrumentation.Http" Version="1.7.0" />
-        <PackageReference Include="Saunter" Version="0.13.0" />
         <PackageReference Include="Swashbuckle.AspNetCore" Version="6.4.0" />
     </ItemGroup>
 
