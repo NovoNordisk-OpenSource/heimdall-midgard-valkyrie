@@ -2,6 +2,6 @@ apiVersion: backstage.io/v1alpha1
 kind: Domain
 metadata:
   name: heimdall-midgard
-  title: Domain for Midgard
+  title: Midgard capability
 spec:
   owner: platform-engineering

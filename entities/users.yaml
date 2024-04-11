@@ -1,6 +1,96 @@
 apiVersion: backstage.io/v1alpha1
 kind: User
 metadata:
+  name: ACUU
+spec:
+  profile:
+    displayName: Antonela Cukurin
+    email: acuu@novonordisk.com
+  memberOf: [platform-engineering]
+---
+apiVersion: backstage.io/v1alpha1
+kind: User
+metadata:
+  name: BLBO
+spec:
+  profile:
+    displayName: Bartul Bonacic
+    email: blbo@novonordisk.com
+  memberOf: [platform-engineering]
+---
+apiVersion: backstage.io/v1alpha1
+kind: User
+metadata:
+  name: DAWW
+spec:
+  profile:
+    displayName: David Winslow
+    email: daww@novonordisk.com
+  memberOf: [platform-engineering]
+---
+apiVersion: backstage.io/v1alpha1
+kind: User
+metadata:
+  name: FCRL
+spec:
+  profile:
+    displayName: Florence Lucille Rolland
+    email: fcrl@novonordisk.com
+  memberOf: [platform-engineering]
+---
+apiVersion: backstage.io/v1alpha1
+kind: User
+metadata:
+  name: HSMX
+spec:
+  profile:
+    displayName: Henrik Stanley Mortensen
+    email: hsmx@novonordisk.com
+  memberOf: [platform-engineering]
+---
+apiVersion: backstage.io/v1alpha1
+kind: User
+metadata:
+  name: JGFM
+spec:
+  profile:
+    displayName: Juan González Martinez
+    email: jgfm@novonordisk.com
+  memberOf: [platform-engineering]
+---
+apiVersion: backstage.io/v1alpha1
+kind: User
+metadata:
+  name: NMZD
+spec:
+  profile:
+    displayName: Nima Zahedi
+    email: nmzd@novonordisk.com
+  memberOf: [platform-engineering]
+---
+apiVersion: backstage.io/v1alpha1
+kind: User
+metadata:
+  name: RTWI
+spec:
+  profile:
+    displayName: Rasmus Testern Wissing
+    email: rtwi@novonordisk.com
+  memberOf: [platform-engineering]
+---
+apiVersion: backstage.io/v1alpha1
+kind: User
+metadata:
+  name: SCNI
+spec:
+  profile:
+    displayName: Casper Nielsen
+    email: scni@novonordisk.com
+  memberOf: [platform-engineering]
+---
+apiVersion: backstage.io/v1alpha1
+kind: User
+metadata:
   name: TTAE
 spec:
   profile:
