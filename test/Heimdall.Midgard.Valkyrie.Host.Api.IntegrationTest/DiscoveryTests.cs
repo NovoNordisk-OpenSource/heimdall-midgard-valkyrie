@@ -1,13 +1,8 @@
 namespace Heimdall.Midgard.Valkyrie.Host.Api.IntegrationTest;
 
-public class DiscoveryTests : IClassFixture<WebApplicationFactory<Program>>
+public class DiscoveryTests(WebApplicationFactory<Program> factory) : IClassFixture<WebApplicationFactory<Program>>
 {
-    private readonly WebApplicationFactory<Program> _factory;
-
-    public DiscoveryTests(WebApplicationFactory<Program> factory)
-    {
-        _factory = factory;
-    }
+    private readonly WebApplicationFactory<Program> _factory = factory;
 
     [Theory]
     [InlineData("/discovery/v1/openapi/schema.json")]
