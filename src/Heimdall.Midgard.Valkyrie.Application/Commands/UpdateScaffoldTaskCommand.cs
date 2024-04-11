@@ -3,9 +3,9 @@ namespace Heimdall.Midgard.Valkyrie.Application.Commands;
 /// <summary>
 ///     Represents a command to update a scaffold task.
 /// </summary>
+/// <param name="scaffoldTaskId">The scaffold task identifier.</param>
 /// <param name="account">The account info to update on a scaffold task.</param>
 /// <param name="options">The options to update on a scaffold task.</param>
-/// <param name="scaffoldTaskId">The scaffold task identifier.</param>
 [method: JsonConstructor]
 public sealed class UpdateScaffoldTaskCommand(Guid scaffoldTaskId, AccountInfo account, IEnumerable<ScaffoldOption>? options = default) : ICommand<ScaffoldTask>
 {

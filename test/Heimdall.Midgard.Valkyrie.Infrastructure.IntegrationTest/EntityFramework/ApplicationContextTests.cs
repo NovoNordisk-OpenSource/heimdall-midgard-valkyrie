@@ -27,7 +27,7 @@ public class ApplicationContextTests : IClassFixture<ApplicationContextFixture>
     public async Task CanPublishDomainEventsOnSaveEntities()
     {
         //Arrange
-        var entityToAdd = new ScaffoldTask(new AccountInfo("default", "default"));
+        var entityToAdd = new ScaffoldTask(new AccountInfo(Guid.NewGuid().ToString(), "default"));
         var mockMediator = new Mock<IMediator>();
 
         mockMediator.Setup(m => m.Publish(It.IsAny<IDomainEvent>(), It.IsAny<CancellationToken>()));
@@ -36,11 +36,18 @@ public class ApplicationContextTests : IClassFixture<ApplicationContextFixture>
 
         //Act
         var attachedEntity = await sut.AddAsync(entityToAdd);
-        bool result = await sut.SaveEntitiesAsync(new CancellationToken());
+        bool result1 = await sut.SaveEntitiesAsync(new CancellationToken());
+
+        sut.Remove(attachedEntity.Entity.Account);
+        sut.Remove(attachedEntity.Entity.Status);
+        sut.Remove(attachedEntity.Entity);
+
+        bool result2 = await sut.SaveEntitiesAsync(new CancellationToken());
 
         //Assert
         Assert.NotNull(sut);
-        Assert.True(result);
+        Assert.True(result1);
+        Assert.True(result2);
         Assert.True(attachedEntity.Entity.Id != Guid.Empty);
 
         Mock.VerifyAll();

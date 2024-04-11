@@ -1,8 +1,6 @@
 // Global using directives
 
 global using AutoMapper;
-global using BeHeroes.CodeOps.Abstractions.Aggregates;
-global using BeHeroes.CodeOps.Abstractions.Commands;
 global using Heimdall.Midgard.Valkyrie.Domain.Aggregates;
 global using Heimdall.Midgard.Valkyrie.Domain.Events;
 global using Heimdall.Midgard.Valkyrie.Domain.Services;

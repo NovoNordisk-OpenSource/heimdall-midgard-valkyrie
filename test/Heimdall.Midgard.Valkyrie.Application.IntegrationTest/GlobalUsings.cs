@@ -1,7 +1,6 @@
 // Global using directives
 
 global using AutoMapper;
-global using BeHeroes.CodeOps.Abstractions.Events;
 global using BeHeroes.CodeOps.Abstractions.Aggregates;
 global using BeHeroes.CodeOps.Abstractions.Commands;
 global using BeHeroes.CodeOps.Abstractions.Data;

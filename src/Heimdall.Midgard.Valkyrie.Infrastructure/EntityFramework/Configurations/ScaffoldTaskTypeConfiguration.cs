@@ -41,7 +41,7 @@ public class ScaffoldTaskTypeConfiguration : IEntityTypeConfiguration<ScaffoldTa
         {
             a.WithOwner().HasForeignKey("OwnerId");
             a.Property<Guid>("Id");
-            a.HasKey("Id");
+            a.HasKey("Id");            
         });
         
         if (_seed != null)

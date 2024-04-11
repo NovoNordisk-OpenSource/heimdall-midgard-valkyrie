@@ -5,14 +5,11 @@ public class ApplicationContextFixture : IDisposable
     private readonly DbContextOptions _options;
     private readonly NpgsqlConnection _connection;
     private bool _disposedValue;
-    private readonly ConfigurationFixture _configFixture = new ConfigurationFixture();
+    private readonly ConfigurationFixture _configFixture = new();
 
     public ApplicationContextFixture()
     {
         _connection = new NpgsqlConnection(_configFixture.Configuration.GetConnectionString("ApplicationContext"));
-
-        _connection.Open();
-
         _options = new DbContextOptionsBuilder().UseNpgsql(_connection).Options;
     }
 

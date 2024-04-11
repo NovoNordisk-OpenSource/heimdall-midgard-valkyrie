@@ -32,7 +32,7 @@ public static class DependencyInjection
 
         // Add DbContext
         services.AddDbContext<ApplicationContext>(options =>
-        {
+        {            
             var serviceProvider = services.BuildServiceProvider();
             var dbContextOptions = serviceProvider.GetService<IOptions<EntityContextOptions>>();
             var callingAssemblyName = Assembly.GetExecutingAssembly().GetName().Name;
@@ -42,10 +42,10 @@ public static class DependencyInjection
                 throw new ApplicationFacadeException($"Could not find connection string with entry key: {nameof(ApplicationContext)}");
 
             var dbOptions = options.UseNpgsql(connectionString,
-                sqliteOptions =>
+                npgsqlOptions =>
                 {
-                    sqliteOptions.MigrationsAssembly(callingAssemblyName);
-                    sqliteOptions.MigrationsHistoryTable(callingAssemblyName + "_MigrationHistory");
+                    npgsqlOptions.MigrationsAssembly(callingAssemblyName);
+                    npgsqlOptions.MigrationsHistoryTable(callingAssemblyName + "_MigrationHistory");
                 }).Options;
 
             using var context = new ApplicationContext(dbOptions, serviceProvider?.GetService<IMediator>());

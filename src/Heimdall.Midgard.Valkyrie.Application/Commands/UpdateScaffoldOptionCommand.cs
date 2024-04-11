@@ -1,9 +1,9 @@
 /// <summary>
 /// Initializes a new instance of the <see cref="UpdateScaffoldOptionCommand"/> class.
 /// </summary>
+/// <param name="scaffoldTaskId">The entity identifier.</param>
 /// <param name="key">The key.</param>
 /// <param name="value">The value.</param>
-/// <param name="scaffoldTaskId">The entity identifier.</param>
 namespace Heimdall.Midgard.Valkyrie.Application.Commands;
 
 [method: JsonConstructor]

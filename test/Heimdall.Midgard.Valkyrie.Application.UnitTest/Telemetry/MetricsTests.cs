@@ -6,7 +6,7 @@ public class MetricsTests
     public void IsValid()
     {
         //Assert
-        Assert.True(Metrics.RequestMeter.Name == "application.requests");
-        Assert.True(Metrics.EventMeter.Name == "application.events");
+        Assert.Equal("application.requests", Metrics.RequestMeter.Name);
+        Assert.Equal("application.events", Metrics.EventMeter.Name);
     }
 }
