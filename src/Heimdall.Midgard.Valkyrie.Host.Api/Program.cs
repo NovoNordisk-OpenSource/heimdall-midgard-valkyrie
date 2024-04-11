@@ -138,3 +138,6 @@ app.Logger.LogStarting(Environment.ProcessId);
 
 // Start the application.
 app.Run();
+
+// Make the program class public to enable testing.
+public partial class Program { }
