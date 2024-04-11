@@ -38,9 +38,24 @@ public class IIntegrationEventToScaffoldTaskConverter(IMapper mapper, IScaffoldS
             }
         }
 
-        if(Guid.TryParse(payload?.GetProperty("scaffoldTaskId").GetString(), out var entityId))
+        if(Guid.TryParse(payload?.GetProperty("scaffoldTask").GetRawText(), out var entityJson))
         {
-            destination = ValueTask.FromResult(await _scaffoldService.GetScaffoldTaskByIdAsync(entityId));
+            var entity = JsonSerializer.Deserialize<ScaffoldTask>(entityJson);
+
+            if(entity is not null)
+            {
+                entity = await _scaffoldService.GetScaffoldTaskByIdAsync(entity.Id) ?? entity;
+
+                if(entity.Id == Guid.Empty)
+                {
+                    entity = await _scaffoldService.AddScaffoldTaskAsync(entity.Account, entity.Options);
+                }
+            }
+            else {
+                entity = new ScaffoldTask(new AccountInfo(source.Id, source.Type));
+            }
+
+            destination = ValueTask.FromResult<ScaffoldTask?>(entity); 
         }
 
         return await destination;
