@@ -41,7 +41,7 @@ public class UpdateScaffoldTaskCommandTests
         UpdateScaffoldTaskCommand sut;
 
         //Act
-        sut = JsonSerializer.Deserialize<UpdateScaffoldTaskCommand>("{\"scaffoldTaskId\":\"00000000-0000-0000-0000-000000000000\",\"options\":[],\"account\":{\"identifier\":\"default\",\"role\":\"default\"}}");
+        sut = JsonSerializer.Deserialize<UpdateScaffoldTaskCommand>("{\"scaffoldTaskId\":\"A39F9312-AFC8-41A6-A8EF-24F5235DC353\",\"options\":[],\"account\":{\"identifier\":\"default\",\"role\":\"default\"}}");
 
         //Assert
         Assert.NotNull(sut);

@@ -13,7 +13,7 @@ public sealed class DefaultProfile : Profile
         CreateMap<IIntegrationEvent, IAggregateRoot>()
         .ConvertUsing<IIntegrationEventToIAggregateRootConverter>();
 
-        CreateMap<IIntegrationEvent, ValueTask<ScaffoldTask?>>()
-        .ConvertUsing<IIntegrationEventToScaffoldTaskConverter>();
+        CreateMap<IIntegrationEvent, ICommand<ScaffoldTask>>()
+        .ConvertUsing<IIntegrationEventToScaffoldTaskCommandConverter>();
     }
 }

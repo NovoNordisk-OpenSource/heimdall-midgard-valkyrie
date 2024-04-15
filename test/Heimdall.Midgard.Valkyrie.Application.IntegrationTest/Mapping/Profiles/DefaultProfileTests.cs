@@ -23,14 +23,14 @@ public class DefaultProfileTests(ServiceProviderFixture fixture) : IClassFixture
     }
 
     [Fact]
-    public async void CanMapIIntegrationEvent2ICommand()
+    public void CanMapIIntegrationEvent2ICommand()
     {
         //Arrange
         var sut = new DefaultProfile();
         var integrationEvent = new ScaffoldTaskCreatedIntegrationEvent()
         {
             Type = "externally_mutated_domain_entity_integration_event",
-            Payload = JsonDocument.Parse("{\"scaffoldTaskId\":\"b59bc2ad-4318-4000-960c-ac25e314448d\"}").RootElement
+            Payload = JsonDocument.Parse("{\"scaffoldTask\":{\"scaffoldTaskId\":\"A39F9312-AFC8-41A6-A8EF-24F5235DC353\",\"options\":[],\"account\":{\"identifier\":\"default\",\"role\":\"default\"}}}").RootElement
         };
         var mapper = new MapperConfiguration(cfg =>
         {
@@ -39,7 +39,7 @@ public class DefaultProfileTests(ServiceProviderFixture fixture) : IClassFixture
         }).CreateMapper();
 
         //Act
-        var result = await mapper.Map<ValueTask<ScaffoldTask>>(integrationEvent);
+        var result = mapper.Map<ICommand<ScaffoldTask>>(integrationEvent);
 
         //Assert
         Assert.NotNull(result);
