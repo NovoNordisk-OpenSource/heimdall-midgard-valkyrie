@@ -26,6 +26,7 @@ public static class Extensions
                         new AuthorizationHeaderHandler(
                             innerHandler,
                             identityOptions,
+                            otlpExporterOptions,
                             AuthorizationOptions.ServicePrincipal
                         )
                     )
@@ -63,6 +64,7 @@ public static class Extensions
                         new AuthorizationHeaderHandler(
                             innerHandler,
                             identityOptions,
+                            otlpExporterOptions,
                             AuthorizationOptions.ServicePrincipal
                         )
                     )
@@ -100,6 +102,7 @@ public static class Extensions
                         new AuthorizationHeaderHandler(
                             innerHandler,
                             identityOptions,
+                            otlpExporterOptions,
                             AuthorizationOptions.ServicePrincipal
                         )
                     )

@@ -2,13 +2,15 @@ namespace Heimdall.Midgard.Valkyrie.Infrastructure.OpenTelemetry;
 /// <summary>
 /// Represents a message handler that adds an authorization header to outgoing HTTP requests for telemetry purposes.
 /// </summary>
-public class AuthorizationHeaderHandler(HttpMessageHandler innerHandler, MicrosoftIdentityOptions identityOptions, AuthorizationOptions options = AuthorizationOptions.ServicePrincipal) : DelegatingHandler(innerHandler)
+public class AuthorizationHeaderHandler(HttpMessageHandler innerHandler, MicrosoftIdentityOptions identityOptions, OpenTelemetryExporterOptions? otlpExporterOptions = default, AuthorizationOptions options = AuthorizationOptions.ServicePrincipal) : DelegatingHandler(innerHandler)
 {
     private static readonly TimeSpan MinimumValidityPeriod = TimeSpan.FromMinutes(2);
 
     private AuthenticationResult? _bearerTelemetryAuthenticationResult = null;
 
     private readonly MicrosoftIdentityOptions _identityOptions = identityOptions;
+
+    private readonly OpenTelemetryExporterOptions _otlpExporterOptions = otlpExporterOptions;
 
     protected override HttpResponseMessage Send(HttpRequestMessage request, CancellationToken cancellationToken)
     {       
@@ -26,7 +28,7 @@ public class AuthorizationHeaderHandler(HttpMessageHandler innerHandler, Microso
     {
         var scope = tokenType switch
         {
-            Constants.Bearer => _identityOptions.ClientId ?? throw new ArgumentNullException($"{_identityOptions.ClientId} is null."),
+            Constants.Bearer => _otlpExporterOptions.BifrostEnvironmentId ?? throw new ArgumentNullException($"{_otlpExporterOptions.BifrostEnvironmentId} is null."),
             _ => throw new ArgumentOutOfRangeException(nameof(tokenType), tokenType, null),
         };
 
@@ -50,7 +52,7 @@ public class AuthorizationHeaderHandler(HttpMessageHandler innerHandler, Microso
 
         if (authenticationResult == null)
         {
-            return "NoAuthNDemo";
+            return "TokenAcquisitionFailed";
         }
 
         _bearerTelemetryAuthenticationResult = tokenType switch
