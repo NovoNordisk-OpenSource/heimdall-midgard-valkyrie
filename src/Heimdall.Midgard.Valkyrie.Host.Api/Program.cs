@@ -46,16 +46,16 @@ builder.Services.AddOpenTelemetry()
     });
 
 // Configure OpenTelemetry Logs
-// builder.Logging.AddOpenTelemetry(logging =>
-// {
-//     logging.IncludeScopes = true;
+builder.Logging.AddOpenTelemetry(logging =>
+{
+    logging.IncludeScopes = true;
 
-//     var resourceBuilder = ResourceBuilder
-//         .CreateDefault()
-//         .AddService(Service.Name);
+    var resourceBuilder = ResourceBuilder
+        .CreateDefault()
+        .AddService(Service.Name);
 
-//     logging.SetResourceBuilder(resourceBuilder).ConfigureLoggerExporter(microsoftIdentityOptions, otlpExporterOptions);
-// });
+    logging.SetResourceBuilder(resourceBuilder).ConfigureLoggerExporter(microsoftIdentityOptions, otlpExporterOptions);
+});
 
 // Add AsyncAPI documentation
 builder.Services.AddAsyncApiSchemaGeneration(options =>
