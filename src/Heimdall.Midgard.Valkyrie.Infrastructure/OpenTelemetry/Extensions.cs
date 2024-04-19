@@ -18,6 +18,7 @@ public static class Extensions
             builder.AddOtlpExporter(otlpOptions =>
             {
                 otlpOptions.Endpoint = new Uri(otlpExporterOptions.Endpoint);
+                otlpOptions.Protocol = OtlpExportProtocol.HttpProtobuf;
                 otlpOptions.HttpClientFactory = () =>
                 {
                     var innerHandler = new HttpClientHandler();
@@ -25,8 +26,7 @@ public static class Extensions
                         new AuthorizationHeaderHandler(
                             innerHandler,
                             identityOptions,
-                            otlpExporterOptions,
-                            AuthorizationOptions.NoAuth
+                            AuthorizationOptions.ServicePrincipal
                         )
                     )
                     {
@@ -55,6 +55,7 @@ public static class Extensions
             builder.AddOtlpExporter(otlpOptions =>
             {
                 otlpOptions.Endpoint = new Uri(otlpExporterOptions.Endpoint);
+                otlpOptions.Protocol = OtlpExportProtocol.HttpProtobuf;
                 otlpOptions.HttpClientFactory = () =>
                 {
                     var innerHandler = new HttpClientHandler();
@@ -62,8 +63,7 @@ public static class Extensions
                         new AuthorizationHeaderHandler(
                             innerHandler,
                             identityOptions,
-                            otlpExporterOptions,
-                            AuthorizationOptions.NoAuth
+                            AuthorizationOptions.ServicePrincipal
                         )
                     )
                     {
@@ -92,6 +92,7 @@ public static class Extensions
             options.AddOtlpExporter(otlpOptions =>
             {
                 otlpOptions.Endpoint = new Uri(otlpExporterOptions.Endpoint);
+                otlpOptions.Protocol = OtlpExportProtocol.HttpProtobuf;
                 otlpOptions.HttpClientFactory = () =>
                 {
                     var innerHandler = new HttpClientHandler();
@@ -99,8 +100,7 @@ public static class Extensions
                         new AuthorizationHeaderHandler(
                             innerHandler,
                             identityOptions,
-                            otlpExporterOptions,
-                            AuthorizationOptions.NoAuth
+                            AuthorizationOptions.ServicePrincipal
                         )
                     )
                     {

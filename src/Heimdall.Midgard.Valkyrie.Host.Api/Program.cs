@@ -31,6 +31,7 @@ builder.Services.AddOpenTelemetry()
                     serviceVersion: Service.Version))
             .AddAspNetCoreInstrumentation()
             .AddHttpClientInstrumentation()
+            .AddGrpcClientInstrumentation()
             .ConfigureTraceExporter(microsoftIdentityOptions, otlpExporterOptions);
     })
     // Configure OpenTelemetry Metrics
@@ -38,22 +39,23 @@ builder.Services.AddOpenTelemetry()
     {
         builder.AddMeter(Metrics.RequestMeter.Name)
             .AddMeter(Metrics.EventMeter.Name)
-            .AddMeter("Microsoft.AspNetCore.Hosting")
-            .AddMeter("Microsoft.AspNetCore.Server.Kestrel")
+            .AddProcessInstrumentation()
+            .AddRuntimeInstrumentation()
+            .AddAspNetCoreInstrumentation()
             .ConfigureMeterExporter(microsoftIdentityOptions, otlpExporterOptions);
     });
 
 // Configure OpenTelemetry Logs
-builder.Logging.AddOpenTelemetry(logging =>
-{
-    logging.IncludeScopes = true;
+// builder.Logging.AddOpenTelemetry(logging =>
+// {
+//     logging.IncludeScopes = true;
 
-    var resourceBuilder = ResourceBuilder
-        .CreateDefault()
-        .AddService(Service.Name);
+//     var resourceBuilder = ResourceBuilder
+//         .CreateDefault()
+//         .AddService(Service.Name);
 
-    logging.SetResourceBuilder(resourceBuilder).ConfigureLoggerExporter(microsoftIdentityOptions, otlpExporterOptions);
-});
+//     logging.SetResourceBuilder(resourceBuilder).ConfigureLoggerExporter(microsoftIdentityOptions, otlpExporterOptions);
+// });
 
 // Add AsyncAPI documentation
 builder.Services.AddAsyncApiSchemaGeneration(options =>

@@ -38,6 +38,7 @@ global using Npgsql;
 global using Metrics = Heimdall.Midgard.Valkyrie.Application.Telemetry.Metrics;
 global using OpenTelemetry.Trace;
 global using OpenTelemetry.Metrics;
+global using OpenTelemetry.Exporter;
 global using OpenTelemetry.Logs;
 global using Saunter.Attributes;
 global using System.ComponentModel.DataAnnotations;
