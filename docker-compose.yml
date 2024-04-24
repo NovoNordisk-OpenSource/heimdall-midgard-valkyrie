@@ -54,10 +54,12 @@ services:
       - heimdall
     volumes:
       - ./:/app
+      - ./ZscalerRootCertificate-2048-SHA256.pem:/zscaler-root.crt
     command:
       - /bin/bash
       - -c
       - |
+        cp zscaler-root.crt $(openssl version -d | cut -f2 -d \")/certs
         export PATH=/usr/local/sbin:/usr/local/bin:/usr/sbin:/usr/bin:/sbin:/bin:/root/.dotnet/tools
         dotnet tool install dotnet-ef -g
         dotnet ef database update --project ./app/src/Heimdall.Midgard.Valkyrie.Infrastructure/Heimdall.Midgard.Valkyrie.Infrastructure.csproj --context ApplicationContext

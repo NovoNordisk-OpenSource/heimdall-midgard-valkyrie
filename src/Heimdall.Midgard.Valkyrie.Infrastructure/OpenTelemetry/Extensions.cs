@@ -17,7 +17,7 @@ public static class Extensions
         if (otlpExporterOptions != null && !string.IsNullOrEmpty(otlpExporterOptions.Endpoint))
             builder.AddOtlpExporter(otlpOptions =>
             {
-                otlpOptions.Endpoint = new Uri(otlpExporterOptions.Endpoint);
+                otlpOptions.Endpoint = new Uri($"{otlpExporterOptions.Endpoint}/v1/traces");
                 otlpOptions.Protocol = OtlpExportProtocol.HttpProtobuf;
                 otlpOptions.HttpClientFactory = () =>
                 {
@@ -55,7 +55,7 @@ public static class Extensions
         if (otlpExporterOptions != null && !string.IsNullOrEmpty(otlpExporterOptions.Endpoint))
             builder.AddOtlpExporter(otlpOptions =>
             {
-                otlpOptions.Endpoint = new Uri(otlpExporterOptions.Endpoint);
+                otlpOptions.Endpoint = new Uri($"{otlpExporterOptions.Endpoint}/v1/metrics");
                 otlpOptions.Protocol = OtlpExportProtocol.HttpProtobuf;
                 otlpOptions.HttpClientFactory = () =>
                 {
@@ -93,7 +93,7 @@ public static class Extensions
         if (otlpExporterOptions != null && !string.IsNullOrEmpty(otlpExporterOptions.Endpoint))
             options.AddOtlpExporter(otlpOptions =>
             {
-                otlpOptions.Endpoint = new Uri(otlpExporterOptions.Endpoint);
+                otlpOptions.Endpoint = new Uri($"{otlpExporterOptions.Endpoint}/v1/logs");
                 otlpOptions.Protocol = OtlpExportProtocol.HttpProtobuf;
                 otlpOptions.HttpClientFactory = () =>
                 {
